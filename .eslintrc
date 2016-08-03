@@ -1,6 +1,9 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "globals": {
+    "DEBUG": true
+  },
   "env": {
     "browser": true,
     "node": true,
@@ -18,7 +21,9 @@
       "jsx": true
     }
   },
-  "rules": {},
+  "rules": {
+    "global-require": 0
+  },
   "settings": {
     "import/resolver": {
       "webpack": {

@@ -11,3 +11,7 @@ node_modules
 
 # Builds
 dist
+
+# Environment configuration files
+config/*.js
+!config/*.example.js

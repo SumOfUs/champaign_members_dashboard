@@ -2,28 +2,49 @@ const path = require('path');
 const validator = require('webpack-validator');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
 const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin');
 const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
 const NoErrorsPlugin = require('webpack/lib/NoErrorsPlugin');
+const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 
 const ENV = process.env.NODE_ENV || 'development';
 const DEBUG = process.env.DEBUG || true;
 
+const vendor = [
+  'react',
+  'react-dom',
+  'react-router',
+  'redux',
+  'immutable',
+  'redux-immutable',
+  'react-bootstrap',
+  'react-router-redux',
+  'react-router-bootstrap',
+  'react-router-scroll',
+  'redux-form',
+  'reselect',
+];
+
 module.exports = validator({
   externals: {},
 
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080/',
-    path.resolve(process.cwd(), 'src', 'app.js'),
-  ],
+  entry: {
+    vendor: [
+      ...vendor,
+      'webpack-hot-middleware/client',
+    ],
+    app: [
+      'react-hot-loader/patch',
+      path.resolve(process.cwd(), 'src', 'app.js'),
+      'webpack-hot-middleware/client',
+    ],
+  },
 
   output: {
     path: path.resolve(process.cwd(), 'dist'),
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].chunk.js',
     publicPath: '/',
-    filename: '[name].[hash:8].bundle.js',
-    sourceMapFilename: '[name].[hash:8].bundle.map',
-    chunkFilename: '[id].[hash:8].chunk.js',
   },
 
   module: {
@@ -37,11 +58,10 @@ module.exports = validator({
     loaders: [{
       test: /\.js$/,
       loaders: [
-        'babel?presets=react-hmre',
+        'babel',
       ],
       exclude: /node_modules/,
     }, {
-      // Transform our own .css files with PostCSS and CSS-modules
       test: /\.css$/,
       exclude: /node_modules/,
       loaders: [
@@ -50,11 +70,6 @@ module.exports = validator({
         'postcss-loader',
       ],
     }, {
-      // Do not transform vendor's CSS with CSS-modules
-      // The point is that they remain in global scope.
-      // Since we require these CSS files in our JS or CSS files,
-      // they will be a part of our compilation either way.
-      // So, no need for ExtractTextPlugin here.
       test: /\.css$/,
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
@@ -71,7 +86,6 @@ module.exports = validator({
       test: /\.(jpg|png|gif)$/,
       loaders: [
         'file-loader',
-        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
       ],
     }],
   },
@@ -79,10 +93,10 @@ module.exports = validator({
   plugins: [
     new HotModuleReplacementPlugin(),
     new NoErrorsPlugin(),
-    new WebpackMd5Hash(),
     new OccurrenceOrderPlugin(true),
+    new CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
     new DefinePlugin({
-      HMR: false,
+      'process.env': JSON.stringify(process.env),
       ENV: JSON.stringify(ENV),
       DEBUG,
     }),
@@ -101,10 +115,12 @@ module.exports = validator({
       '',
       '.js',
     ],
-    modulesDirectories: [
-      'src',
-      'node_modules',
+    root: [
+      path.resolve(process.cwd(), 'src'),
     ],
+    alias: {
+      'app-config$': path.resolve(process.cwd(), 'config', ENV),
+    },
   },
 
   devServer: {
