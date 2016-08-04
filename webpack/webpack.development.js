@@ -123,18 +123,11 @@ module.exports = validator({
     },
   },
 
-  devServer: {
-    historyApiFallback: {
-      index: '/',
-    },
-  },
   debug: DEBUG,
   cache: true,
   profile: true,
   target: 'web',
   devtool: 'cheap-module-eval-source-map',
-  stats: false,
-  progress: true,
   node: {
     console: true,
     fs: 'empty',
