@@ -12,4 +12,4 @@ export const signOut = () => dispatch => {
   deleteFromLocalStorage();
 
   dispatch({ type: LOGOUT_SUCCESS });
-}
+};

@@ -11,14 +11,12 @@ import {
 
 export class RequireAuthentication extends Component {
   componentWillMount() {
-    console.log('component will update!', this.props);
     if (!this.checkAuthentication(this.props)) {
       this.props.redirect('/login');
     }
   }
 
   componentWillUpdate(props) {
-    console.log('component will update!', props);
     if (!this.checkAuthentication(props)) {
       this.props.redirect('/login');
     }
@@ -27,7 +25,6 @@ export class RequireAuthentication extends Component {
   // checkAuthentication is the actual method
   // that checks for props.token
   checkAuthentication(props) {
-    console.log('checking authentication', props.token, props.member);
     return props.token && props.member;
   }
 
