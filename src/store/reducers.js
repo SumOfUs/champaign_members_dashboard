@@ -5,6 +5,8 @@ import { reducer as formReducer } from 'redux-form/immutable';
 import { authReducer } from 'containers/LoginPage/reducers';
 import { LOGIN_SUCCESS } from 'containers/LoginPage/actions';
 
+import { subscriptionsReducer } from 'containers/SubscriptionsPage/reducers';
+
 import { LOGOUT_SUCCESS } from './actions';
 
 const routeInitialState = fromJS({
@@ -37,8 +39,9 @@ function globalReducer(state = initialGlobalState, action) {
 }
 
 export default {
-  form: formReducer,
-  route: routeReducer,
-  global: globalReducer,
   auth: authReducer,
+  form: formReducer,
+  global: globalReducer,
+  route: routeReducer,
+  subscriptions: subscriptionsReducer,
 };

@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import {
   Navbar,
+  NavItem,
   Nav,
 } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 import { MemberDropdownMenu } from './MemberDropdownMenu';
 
@@ -16,6 +18,9 @@ export const Header = (props) => (
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav pullRight>
+        <NavItem eventKey={1}>
+          <Link to="/subscriptions">Subscriptions</Link>
+        </NavItem>
         <MemberDropdownMenu member={props.member} onSignOut={props.onSignOut} />
       </Nav>
     </Navbar.Collapse>

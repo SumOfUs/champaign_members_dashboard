@@ -14,7 +14,9 @@ export function HomePage(props) {
   return (
     <section id="home-page">
       <Header member={props.member} onSignOut={props.onSignOut} />
-      <p>Home Pages</p>
+      <div role="main" id="content">
+        {props.children}
+      </div>
     </section>
   );
 }
@@ -22,6 +24,7 @@ export function HomePage(props) {
 HomePage.propTypes = {
   member: PropTypes.object.isRequired,
   onSignOut: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 const mapStateToProps = createStructuredSelector({

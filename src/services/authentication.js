@@ -1,7 +1,3 @@
-import config from 'app-config';
-import axios from 'axios';
+import { api } from './helpers';
 
-const API_URL = `${config.apiUrl}/api/stateless`;
-
-export const authenticate = credentials =>
-  axios.post(`${API_URL}/auth/password`, credentials);
+export const authenticate = credentials => api.post('auth/password', credentials);
