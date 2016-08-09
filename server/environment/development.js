@@ -9,7 +9,7 @@ module.exports = (app) => {
   const middleware = webpackMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
     quiet: false,
-    noInfo: false,
+    noInfo: true,
     stats: {
       colors: true,
     },

@@ -1,10 +1,16 @@
 import { createSelector } from 'reselect';
 
 export const selectGlobal = () => state => state.get('global');
+export const selectAuth = () => state => state.get('auth');
 
 export const selectCurrentMember = () => createSelector(
-  selectGlobal(),
-  globalState => globalState.get('member')
+  selectAuth(),
+  authState => authState.get('member')
+);
+
+export const selectAuthToken = () => createSelector(
+  selectAuth(),
+  authState => authState.get('token')
 );
 
 export const selectSubscriptions = () => createSelector(

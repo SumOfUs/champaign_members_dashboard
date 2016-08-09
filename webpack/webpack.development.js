@@ -22,7 +22,9 @@ const vendor = [
   'react-router-bootstrap',
   'react-router-scroll',
   'redux-form',
+  'redux-thunk',
   'reselect',
+  'react-hot-loader',
 ];
 
 module.exports = validator({

@@ -1,48 +1,37 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
 
 import App from 'containers/App';
-import HomePage from 'containers/HomePage';
-import LoginPage from 'containers/LoginPage';
+import RequireAuthentication from 'containers/RequireAuthentication';
+import HomePage from 'containers/HomePage/HomePage';
+import LoginPage from 'containers/LoginPage/LoginPage';
 
 import {
   selectCurrentMember,
+  selectAuthToken,
 } from '../../store/selectors';
 
-export class AppRouter extends Component {
-  authenticateUser = (nextState, replace) => {
-    if (!this.props.member) {
-      replace('/login');
-    }
-  }
-
-  render() {
-    return (
-      <Router history={this.props.history} render={this.props.render}>
-        <Route component={App}>
-          <Route path="/login" name="login" component={LoginPage} />
-          <Route
-            path="/"
-            name="home"
-            onEnter={this.authenticateUser}
-            component={HomePage}
-          />
-        </Route>
-      </Router>
-    );
-  }
-}
+export const AppRouter = (props) => (
+  <Router history={props.history} render={props.render}>
+    <Route component={App}>
+      <Route path="/login" name="login" component={LoginPage} />
+      <Route component={RequireAuthentication}>
+        <Route path="/" name="home" component={HomePage} />
+      </Route>
+    </Route>
+  </Router>
+);
 
 AppRouter.propTypes = {
-  member: React.PropTypes.object,
-  history: React.PropTypes.object,
-  render: React.PropTypes.func,
+  history: PropTypes.object,
+  render: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
+  token: selectAuthToken(),
   member: selectCurrentMember(),
 });
 
