@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 import { Field, SubmissionError, reduxForm } from 'redux-form/immutable';
 import {
+  Alert,
   Button,
   Checkbox,
   ControlLabel,
@@ -11,17 +12,27 @@ import {
   FormGroup,
 } from 'react-bootstrap';
 import { FieldComponent } from 'components/FormComponents/FieldComponent';
+import { LoadingOverlay } from 'components/LoadingOverlay/LoadingOverlay';
 
 import {
   selectAuthToken,
   selectCurrentMember,
-  selectLoading,
-  selectError,
 } from 'store/selectors';
 
 import { login } from './actions';
 import validate from './validate';
 import styles from './LoginPage.css';
+
+function errorHandler(response) {
+  switch(response.status) {
+    case 401:
+    case 400:
+      return 'Invalid user or password';
+    case 0:
+    default:
+      return 'There was an error with the server';
+  }
+}
 
 export class LoginPage extends Component {
   componentWillMount() {
@@ -32,11 +43,14 @@ export class LoginPage extends Component {
     return this.redirectIfAuthenticated();
   }
 
-  onSubmit = (data, dispatch) => {
+  onSubmit(data, dispatch) {
     const credentials = data.toJS();
     return dispatch(login(credentials))
       .catch(error => {
-        throw new SubmissionError(error);
+        // handle response errors in a neater way
+        console.log(error.response.status);
+        const message = errorHandler(error.response);
+        throw new SubmissionError({ _error: message });
       });
   }
 
@@ -46,11 +60,24 @@ export class LoginPage extends Component {
     }
   }
 
+  submitFailedMessage() {
+    return (
+      <Alert bsStyle="danger">
+        <p>{this.props.error}</p>
+      </Alert>
+    );
+  }
 
   render() {
-    const { handleSubmit } = this.props;
+    const {
+      token,
+      member,
+      handleSubmit,
+      submitting,
+      submitFailed,
+    } = this.props;
 
-    if (this.props.token && this.props.member) {
+    if (token && member) {
       return (null);
     }
 
@@ -60,20 +87,35 @@ export class LoginPage extends Component {
         <div className={`${styles.overlay} container`}>
           <h1 className={styles.title}>Login</h1>
           <form onSubmit={handleSubmit(this.onSubmit)} className={styles.form}>
+
+            <LoadingOverlay enabled={submitting} />
+
+            {submitFailed ? this.submitFailedMessage() : null}
+
             <FormGroup controlId="loginEmail">
               <ControlLabel>Email</ControlLabel>
-              <Field name="email" type="text" component={FieldComponent} />
+              <Field
+                name="email"
+                type="text"
+                component={FieldComponent}
+                disabled={submitting}
+              />
             </FormGroup>
 
             <FormGroup controlId="loginPassword">
               <ControlLabel>Password</ControlLabel>
-              <Field name="password" type="password" component={FieldComponent} />
+              <Field
+                name="password"
+                type="password"
+                component={FieldComponent}
+                disabled={submitting}
+              />
               <FormControl.Feedback />
             </FormGroup>
 
             <Checkbox>Remember me</Checkbox>
 
-            <Button type="submit">Log in</Button>
+            <Button type="submit" disabled={submitting}>Log in</Button>
           </form>
         </div>
       </section>
@@ -85,8 +127,10 @@ LoginPage.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   redirect: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  submitFailed: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
-  error: PropTypes.object,
+  error: PropTypes.string,
   token: PropTypes.string,
   member: PropTypes.object,
 };
@@ -94,8 +138,6 @@ LoginPage.propTypes = {
 const mapStateToProps = createStructuredSelector({
   token: selectAuthToken(),
   member: selectCurrentMember(),
-  loading: selectLoading(),
-  error: selectError(),
 });
 
 const mapDispatchToProps = dispatch => ({

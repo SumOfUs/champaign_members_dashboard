@@ -68,10 +68,12 @@ export const login = credentials => dispatch => {
     .then(
       success => {
         saveToLocalStorage(success.data);
-        dispatch({ type: LOGIN_SUCCESS, payload: success.data });
+        return dispatch({ type: LOGIN_SUCCESS, payload: success.data });
       },
       error => {
         deleteFromLocalStorage();
         dispatch({ type: LOGIN_ERROR, error });
+        console.log('error before throwing', error);
+        throw error;
       });
 };
