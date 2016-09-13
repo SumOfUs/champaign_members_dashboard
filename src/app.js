@@ -32,7 +32,7 @@ render(
 );
 
 // For react-hot-loader / hmr. Production builds will ignore this block.
-if (module.hot) {
+if (module.hot && ENV !== 'production') {
   module.hot.accept('./containers/Root', () => {
     const NewRoot = require('./containers/Root').default;
     render(

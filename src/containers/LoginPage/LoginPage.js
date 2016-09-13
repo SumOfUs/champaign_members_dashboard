@@ -23,6 +23,8 @@ import { login } from './actions';
 import validate from './validate';
 import styles from './LoginPage.css';
 
+const { Feedback } = FormControl;
+
 export class LoginPage extends Component {
   componentWillMount() {
     return this.redirectIfAuthenticated();
@@ -68,7 +70,7 @@ export class LoginPage extends Component {
             <FormGroup controlId="loginPassword">
               <ControlLabel>Password</ControlLabel>
               <Field name="password" type="password" component={FieldComponent} />
-              <FormControl.Feedback />
+              <Feedback />
             </FormGroup>
 
             <Checkbox>Remember me</Checkbox>

@@ -4,16 +4,15 @@
     "stage-0",
     "react"
   ],
-  "plugins": [
-    "react-hot-loader/babel"
-  ],
   "env": {
-    "production": {
-      "only": ["src"],
+    "development": {
       "plugins": [
-        "transform-react-remove-prop-types",
-        "transform-react-constant-elements",
-        "transform-react-inline-elements"
+        "react-hot-loader/babel"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-remove-prop-types"
       ]
     }
   }
