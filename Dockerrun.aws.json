@@ -1,0 +1,15 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+  },
+  "Image": {
+    "Name": "osahyoun/members_dashboard"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "3000"
+    }
+  ],
+  "Volumes": [],
+  "Logging": "/myapp/log"
+}
