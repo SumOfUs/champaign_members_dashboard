@@ -25,7 +25,7 @@ module.exports = validator({
     path: path.resolve(process.cwd(), 'dist'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
-    publicPath: 'http://localhost:8080/',
+    publicPath: '/',
   },
 
   module: {
