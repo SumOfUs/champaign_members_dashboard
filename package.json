@@ -12,7 +12,8 @@
     "start": "node server/index.js",
     "test": "karma start",
     "eslint": "eslint",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "docker:build": "docker build -t champaign-dashboard ."
   },
   "repository": {
     "type": "git",

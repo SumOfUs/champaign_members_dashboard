@@ -3,13 +3,18 @@
   "Authentication": {
   },
   "Image": {
-    "Name": "osahyoun/members_dashboard"
+    "Name": "osahyoun/members_dashboard:latest"
   },
   "Ports": [
     {
-      "ContainerPort": "3000"
+      "ContainerPort": "80"
     }
   ],
   "Volumes": [],
-  "Logging": "/myapp/log"
+  "Logging": "/webapp/log"
 }
+
+
+
+
+
