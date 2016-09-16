@@ -1,6 +1,6 @@
 // import { api } from './helpers';
 import faker from 'faker';
-
+import { api } from './helpers';
 /*
 type Transaction {
   id: string;
@@ -44,12 +44,8 @@ function generateSubscription() {
   return subscription;
 }
 
-export const getSubscriptions = () => {
-  const subscriptions = [];
-
-  for (let x = 0; x < 5; x++) {
-    subscriptions.push(generateSubscription());
-  }
-
-  return Promise.resolve({ data: subscriptions });
+export const getSubscriptions = (token) => {
+  const headers = { Authorization: `Bearer ${token}` };
+  return api.get('braintree/subscriptions', { headers });
 };
+
