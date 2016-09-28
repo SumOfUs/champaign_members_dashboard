@@ -18,16 +18,5 @@ app.listen(port, (err) => {
     return console.error(chalk.red(err.message));
   }
 
-  console.log('Preparing bundle...');
-
-  middleware.waitUntilValid(() => {
-    const localUrl = chalk.magenta(`http://localhost:${port}`);
-    const lanUrl = chalk.magenta(`http://${ip.address()}:${port}`)
-    console.log()
-
-    console.log(chalk.bold('Access URLs:'));
-    console.log(`    localhost: ${localUrl}`);
-    console.log(`          LAN: ${lanUrl}`);
-  });
   return app;
 });

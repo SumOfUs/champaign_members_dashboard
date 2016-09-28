@@ -34,7 +34,11 @@ export class RequireAuthentication extends Component {
       return (null);
     }
 
-    return (<div>{this.props.children}</div>);
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
   }
 }
 

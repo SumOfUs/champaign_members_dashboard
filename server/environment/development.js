@@ -1,26 +1,26 @@
 const path = require('path');
 const webpack = require('webpack');
-const webpackMiddleware = require('webpack-dev-middleware');
+const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../../webpack/webpack.development.js');
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = (app) => {
   const compiler = webpack(webpackConfig);
-  const middleware = webpackMiddleware(compiler, {
+  const dashboard = new Dashboard();
+
+  compiler.apply(new DashboardPlugin(dashboard.setData));
+
+  const middleware = webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    quiet: false,
-    noInfo: true,
-    stats: {
-      colors: true,
-    },
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: true,
-    },
+    quiet: true,
   });
 
   app.use(middleware);
-  app.use(webpackHotMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler, {
+    log: () => {},
+  }));
 
   // to enable html5 history api, we respond to 404s with index.html
   const fs = middleware.fileSystem;
