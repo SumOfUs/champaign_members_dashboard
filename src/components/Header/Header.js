@@ -21,6 +21,9 @@ export const Header = (props) => (
         <NavItem eventKey={1}>
           <Link to="/subscriptions">Subscriptions</Link>
         </NavItem>
+        <NavItem eventKey={1}>
+          <Link to="/payment-methods">Payment Methods</Link>
+        </NavItem>
         <MemberDropdownMenu member={props.member} onSignOut={props.onSignOut} />
       </Nav>
     </Navbar.Collapse>
@@ -31,4 +34,3 @@ Header.propTypes = {
   member: PropTypes.object.isRequired,
   onSignOut: PropTypes.func.isRequired,
 };
-

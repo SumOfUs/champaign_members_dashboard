@@ -149,7 +149,7 @@ module.exports = validator({
   cache: true,
   profile: true,
   target: 'web',
-  devtool: 'eval',
+  devtool: 'cheap-eval-source-map',
   node: {
     console: true,
     fs: 'empty',

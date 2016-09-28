@@ -2,10 +2,10 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import { fromJS } from 'immutable';
 import { reducer as formReducer } from 'redux-form/immutable';
 
-import { authReducer } from 'containers/LoginPage/reducers';
-import { LOGIN_SUCCESS } from 'containers/LoginPage/actions';
-
-import { subscriptionsReducer } from 'containers/SubscriptionsPage/reducers';
+import { authReducer } from '../containers/LoginPage/reducers';
+import { LOGIN_SUCCESS } from '../containers/LoginPage/actions';
+import { subscriptionsReducer } from '../containers/SubscriptionsPage/reducers';
+import { paymentMethodsReducer } from '../containers/PaymentMethodsPage/payment-methods.reducers';
 
 import { LOGOUT_SUCCESS } from './actions';
 
@@ -44,4 +44,5 @@ export default {
   global: globalReducer,
   route: routeReducer,
   subscriptions: subscriptionsReducer,
+  paymentMethods: paymentMethodsReducer,
 };
