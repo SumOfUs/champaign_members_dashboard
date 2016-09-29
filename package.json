@@ -2,12 +2,10 @@
   "name": "champaign_members_dashboard",
   "version": "0.1.0",
   "description": "Champaign's Members dashboard",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sumofus/champaign_members_dashboard.git"
   },
-  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sumofus/champaign_members_dashboard/issues"
