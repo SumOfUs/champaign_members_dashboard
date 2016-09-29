@@ -1,3 +1,4 @@
 import { api } from './helpers';
-
-export const authenticate = credentials => api.post('auth/password', credentials);
+export const authenticate = payload => {
+  return api.post('auth/password', payload).then(s => s.json());
+};

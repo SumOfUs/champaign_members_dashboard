@@ -1,4 +1,4 @@
-import { authenticate } from 'services/authentication';
+import { authenticate } from '../../services/authentication';
 import { fromJS } from 'immutable';
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
@@ -65,15 +65,13 @@ export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_REQUEST, credentials });
 
   return authenticate({ credentials })
-    .then(
-      success => {
-        saveToLocalStorage(success.data);
-        return dispatch({ type: LOGIN_SUCCESS, payload: success.data });
-      },
-      error => {
-        deleteFromLocalStorage();
-        dispatch({ type: LOGIN_ERROR, error });
-        console.log('error before throwing', error);
-        throw error;
-      });
+    .then(response => {
+      saveToLocalStorage(response);
+      return dispatch({ type: LOGIN_SUCCESS, payload: response });
+    })
+    .catch(error => {
+      deleteFromLocalStorage();
+      dispatch({ type: LOGIN_ERROR, error });
+      return error.body();
+    });
 };

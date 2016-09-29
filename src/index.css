@@ -9,24 +9,8 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-:global(#root) {
+#root {
   background-color: #FAFAFA;
   min-height: 100%;
   min-width: 100%;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-}
-
-.logoWrapper {
-  padding: 2em 0;
-}
-
-.logo {
-  width: 100%;
-  margin: 0 auto;
-  display: block;
 }

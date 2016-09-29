@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
-import styles from './LoadingOverlay.css';
+import './LoadingOverlay.css';
 
 export const LoadingOverlay = ({ enabled }) => {
   if (!enabled) {
@@ -8,7 +8,7 @@ export const LoadingOverlay = ({ enabled }) => {
   }
 
   return (
-    <div className={styles.overlay}>
+    <div className="LoadingOverlay-overlay">
       <FontAwesome name="circle-o-notch" spin />
     </div>
   );

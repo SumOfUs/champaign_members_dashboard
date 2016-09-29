@@ -1,11 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { selectCurrentMember, selectAuthToken } from 'store/selectors';
+import { selectCurrentMember, selectAuthToken } from '../../store/selectors';
 import { selectAllSubscriptions } from './selectors';
 import { fetchSubscriptions } from './actions';
 
-import { SubscriptionList } from 'components/SubscriptionList';
+import { SubscriptionList } from '../../components/SubscriptionList';
 
 export class SubscriptionsPage extends Component {
   componentDidMount() {

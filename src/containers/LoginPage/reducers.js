@@ -1,10 +1,11 @@
-import { fromJS } from 'immutable'; import {
+import { fromJS } from 'immutable';
+import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   getPersistedState,
 } from './actions';
 
-import { LOGOUT_SUCCESS } from 'store/actions';
+import { LOGOUT_SUCCESS } from '../../store/actions';
 
 export function authReducer(state = getPersistedState(), action) {
   switch (action.type) {

@@ -7,12 +7,13 @@ import {
 import { Link } from 'react-router';
 
 import { MemberDropdownMenu } from './MemberDropdownMenu';
+import logo from './logo.png';
 
 export const Header = (props) => (
   <Navbar inverse staticTop fluid>
     <Navbar.Header>
       <Navbar.Brand>
-        <img role="presentation" src={require('assets/images/sum-of-us-logo.png')} />
+        <img role="presentation" src={logo} />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>

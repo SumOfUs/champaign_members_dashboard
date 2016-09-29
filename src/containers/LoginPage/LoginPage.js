@@ -11,17 +11,17 @@ import {
   FormControl,
   FormGroup,
 } from 'react-bootstrap';
-import { FieldComponent } from 'components/FormComponents/FieldComponent';
-import { LoadingOverlay } from 'components/LoadingOverlay/LoadingOverlay';
+import { FieldComponent } from '../../components/FormComponents/FieldComponent';
+import { LoadingOverlay } from '../../components/LoadingOverlay/LoadingOverlay';
 
 import {
   selectAuthToken,
   selectCurrentMember,
-} from 'store/selectors';
+} from '../../store/selectors';
 
 import { login } from './actions';
 import validate from './validate';
-import styles from './LoginPage.css';
+import './LoginPage.css';
 
 const { Feedback } = FormControl;
 
@@ -49,9 +49,7 @@ export class LoginPage extends Component {
     const credentials = data.toJS();
     return dispatch(login(credentials))
       .catch(error => {
-        // handle response errors in a neater way
-        console.log(error.response.status);
-        const message = errorHandler(error.response);
+        const message = errorHandler(error);
         throw new SubmissionError({ _error: message });
       });
   }
@@ -85,15 +83,12 @@ export class LoginPage extends Component {
 
     return (
       <section id="login-page">
-        <div className={styles.background}></div>
-        <div className={`${styles.overlay} container`}>
-          <h1 className={styles.title}>Login</h1>
-          <form onSubmit={handleSubmit(this.onSubmit)} className={styles.form}>
-
+        <div className="LoginPage-background"></div>
+        <div className="LoginPage-overlay container">
+          <h1 className="LoginPage-title">Login</h1>
+          <form onSubmit={handleSubmit(this.onSubmit)} className="LoginPage-form">
             <LoadingOverlay enabled={submitting} />
-
             {submitFailed ? this.submitFailedMessage() : null}
-
             <FormGroup controlId="loginEmail">
               <ControlLabel>Email</ControlLabel>
               <Field

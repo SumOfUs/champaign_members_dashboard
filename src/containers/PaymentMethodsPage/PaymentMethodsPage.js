@@ -9,7 +9,7 @@ import FontAwesome from 'react-fontawesome';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 
-import { selectCurrentMember, selectAuthToken } from 'store/selectors';
+import { selectCurrentMember, selectAuthToken } from '../../store/selectors';
 import {
   selectPaymentMethods,
   selectDeletingPaymentMethods,
@@ -60,10 +60,6 @@ export class PaymentMethodsPage extends Component {
   }
 
   renderPaymentMethodRow(item) {
-    const deleting = this.props.deleting.get(item.get('id')) || false;
-    console.log('deleting:', this.props.deleting.get(item.get('id')));
-    console.log(item.toJS());
-    console.log(this.props.deleting.toJS());
     return (
       <tr key={item.get('id')}>
         <td>{paymentMethodTitle(item.toJS())}</td>
@@ -96,10 +92,12 @@ export class PaymentMethodsPage extends Component {
   }
 
   render() {
+
     return (
       <div id="payment-methods-page">
         <div className="container">
           <PageHeader>Your Payment Methods</PageHeader>
+          { this.props.paymentMethods ? this.renderPaymentMethods() : null }
         </div>
       </div>
     );

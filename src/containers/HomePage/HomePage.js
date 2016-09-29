@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { Header } from 'components/Header/Header';
+import { Header } from '../../components/Header/Header';
 
 import {
   selectCurrentMember,
 } from '../../store/selectors';
 
-import { signOut } from 'store/actions';
+import { signOut } from '../../store/actions';
 
 export function HomePage(props) {
   return (
