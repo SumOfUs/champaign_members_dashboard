@@ -57,7 +57,9 @@ const mapStateToProps = () => createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  redirect: url => dispatch(push(url)),
+  redirect: url => {
+    dispatch(push(url));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequireAuthentication);

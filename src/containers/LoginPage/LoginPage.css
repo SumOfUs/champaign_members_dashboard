@@ -1,4 +1,4 @@
-:global(#login-page) {
+#LoginPage {
   color: white;
   position: relative;
   display: flex;
@@ -6,7 +6,7 @@
   justify-content: center;
 }
 
-.background {
+.LoginPage-background {
   background-size: cover;
   background-color: #414141;
   width: 100%;
@@ -19,7 +19,7 @@
   background-image: url(https://d1fj2p9hyaanfd.cloudfront.net/assets/champaign/backgrounds/dune-f8c471b91f23c98145df6be52dec7c7f391e86033a9bd955f0894b7a473b4117.jpg);
 }
 
-.title {
+.LoginPage-title {
   position: absolute;
   top: 0;
   left: 0;
@@ -33,7 +33,7 @@
   font-size: 30px;
 }
 
-.overlay {
+.LoginPage-overlay {
   background-color: white;
   color: black;
   max-width: 500px;
@@ -46,6 +46,6 @@
   padding-top: 90px;
 }
 
-.form {
+.LoginPage-form {
   position: relative;
 }

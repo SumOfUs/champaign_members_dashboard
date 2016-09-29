@@ -1,31 +1,20 @@
-import { LOCATION_CHANGE } from 'react-router-redux';
 import { fromJS } from 'immutable';
 import { reducer as formReducer } from 'redux-form/immutable';
+import { LOCATION_CHANGE } from 'react-router-redux';
+
+import { LOGOUT_SUCCESS } from './actions';
+import { LOGIN_SUCCESS } from '../containers/LoginPage/actions';
 
 import { authReducer } from '../containers/LoginPage/reducers';
-import { LOGIN_SUCCESS } from '../containers/LoginPage/actions';
 import { subscriptionsReducer } from '../containers/SubscriptionsPage/reducers';
 import { paymentMethodsReducer } from '../containers/PaymentMethodsPage/payment-methods.reducers';
 
-import { LOGOUT_SUCCESS } from './actions';
-
-const routeInitialState = fromJS({
-  locationBeforeTransitions: null,
+const initialGlobalState = fromJS({
+  appName: `Member's Dashboard`,
+  appVersion: '0.1.0',
 });
 
-function routeReducer(state = routeInitialState, action) {
-  switch (action.type) {
-    case LOCATION_CHANGE:
-      return state.merge({
-        locationBeforeTransitions: action.payload,
-      });
-    default:
-      return state;
-  }
-}
-
-const initialGlobalState = fromJS({});
-function globalReducer(state = initialGlobalState, action) {
+function globalReducer(state = initialGlobalState, action = {}) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return state.merge({
@@ -38,11 +27,22 @@ function globalReducer(state = initialGlobalState, action) {
   }
 }
 
+function routeReducer(state = fromJS({ locationBeforeTransitions: null }), action) {
+  switch (action.type) {
+    case LOCATION_CHANGE:
+      return state.merge({
+        locationBeforeTransitions: action.payload,
+      });
+    default:
+      return state;
+  }
+}
+
 export default {
-  auth: authReducer,
-  form: formReducer,
   global: globalReducer,
+  form: formReducer,
   route: routeReducer,
+  auth: authReducer,
   subscriptions: subscriptionsReducer,
   paymentMethods: paymentMethodsReducer,
 };

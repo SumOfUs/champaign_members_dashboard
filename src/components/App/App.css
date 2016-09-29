@@ -1,0 +1,16 @@
+
+.App-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.logoWrapper {
+  padding: 2em 0;
+}
+
+.logo {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}

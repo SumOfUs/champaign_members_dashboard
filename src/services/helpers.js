@@ -1,19 +1,46 @@
-import config from 'app-config';
-import axios from 'axios';
+const { REACT_APP_CHAMPAIGN_URL } = process.env;
 
-export const BASE_URL = `${config.apiUrl}/api/stateless`;
+export const BASE_URL = `${REACT_APP_CHAMPAIGN_URL}/api/stateless`;
 
+function checkStatus(response) {
+  if (response.ok) {
+    return response;
+  }
+
+  throw response;
+}
 export const api = {
-  get(url, ...args) {
-    return axios.get(`${BASE_URL}/${url}`, ...args);
+  get(url, headers = {}) {
+    return fetch(`${BASE_URL}/${url}`, {
+      method: 'GET',
+      headers: Object.assign({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }, headers),
+    })
+    .then(checkStatus);
   },
 
-  post(url, ...args) {
-    return axios.post(`${BASE_URL}/${url}`, ...args);
+  post(url, payload = {}, headers = {}) {
+    return fetch(`${BASE_URL}/${url}`, {
+      method: 'POST',
+      headers: Object.assign({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }, headers),
+      body: JSON.stringify(payload),
+    })
+    .then(checkStatus);
   },
 
-  delete(url, ...args) {
-    return axios.delete(`${BASE_URL}/${url}`, ...args);
+  delete(url, headers= {}) {
+    return fetch(`${BASE_URL}/${url}`, {
+      method: 'DELETE',
+      headers: Object.assign({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }, headers),
+    })
+    .then(checkStatus);
   },
 };
-
