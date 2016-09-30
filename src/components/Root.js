@@ -2,13 +2,12 @@ import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { IndexRoute, Router, Route } from 'react-router';
 
-import App from './components/App/App';
-import RequireAuthentication from './containers/RequireAuthentication';
-import HomePage from './containers/HomePage/HomePage';
-import LoginPage from './containers/LoginPage/LoginPage';
-import SubscriptionsPage from './containers/SubscriptionsPage/SubscriptionsPage';
-import PaymentMethodsPage from './containers/PaymentMethodsPage/PaymentMethodsPage';
-
+import App from './App/App';
+import RequireAuthentication from '../containers/RequireAuthentication';
+import HomePage from '../containers/HomePage/HomePage';
+import LoginPage from '../containers/LoginPage/LoginPage';
+import SubscriptionsPage from '../containers/SubscriptionsPage/SubscriptionsPage';
+import PaymentMethodsPage from '../containers/PaymentMethodsPage/PaymentMethodsPage';
 
 export function Root(props) {
   const { store, history, render } = props;
