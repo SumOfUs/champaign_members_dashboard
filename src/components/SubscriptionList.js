@@ -1,49 +1,49 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes } from 'react'
+import Immutable from 'immutable'
+
 import {
   PageHeader,
   Table,
-} from 'react-bootstrap';
+} from 'react-bootstrap'
+
 import { SubscriptionItem } from './SubscriptionItem';
 
+const NoSubscriptions = props => (
+  <tr><td colSpan='6'><h4>You don't have any recurring donations</h4></td></tr>
+)
 
-const subscriptionItems = items => (
-  <Table striped bordered condensed hover>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Billing Day of Month</th>
-        <th>Created</th>
-        <th>Price</th>
-        <th>No. of Transactions</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {items.map(i => <SubscriptionItem key={i.get('id')} subscription={i} />)}
-    </tbody>
-  </Table>
-);
+export const SubscriptionList = props => {
+  let subscriptions
 
-const emptyList = () => <div>No subscriptions</div>;
-
-export const SubscriptionList = (props) => {
-  let items;
-  if (!props.subscriptions) {
-    items = emptyList();
+  if(props.subscriptions.size > 0) {
+    subscriptions = props.subscriptions.map(subscription=> <SubscriptionItem key={subscription.get('id')} deleteSubscription={props.deleteSubscription} auth={props.auth} {...subscription.toJS()} />)
   } else {
-    items = subscriptionItems(props.subscriptions.toArray());
+    subscriptions = <NoSubscriptions />
   }
 
-  return (
+  return(
     <div className="container">
       <PageHeader>Your Subscriptions</PageHeader>
       <div className="subscription-list">
-        {items}
+        <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>Billing Day of Month</th>
+              <th>Created</th>
+              <th>Price</th>
+              <th>No. of Transactions</th>
+              <th colSpan='2'></th>
+            </tr>
+          </thead>
+          <tbody>
+            { subscriptions }
+          </tbody>
+        </Table>
       </div>
     </div>
-  );
-};
+  )
+}
 
 SubscriptionList.propTypes = {
-  subscriptions: PropTypes.object,
-};
+  subscriptions: PropTypes.instanceOf(Immutable.List)
+}
