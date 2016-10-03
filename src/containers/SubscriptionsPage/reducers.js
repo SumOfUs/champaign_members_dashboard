@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import Immutable, { fromJS } from 'immutable';
 
 import {
   FETCH_SUBSCRIPTIONS_REQUEST,
@@ -7,7 +7,7 @@ import {
 } from './actions';
 
 const initialState = fromJS({
-  subscriptions: [],
+  subscriptions:  Immutable.List([]),
   loading: false,
 });
 
@@ -20,6 +20,6 @@ export const subscriptionsReducer = (state = fromJS({}), action = {}) => {
     case FETCH_SUBSCRIPTIONS_FAILURE:
       return state.merge({ subscriptions: [] });
     default:
-      return state;
+      return state.merge({ subscriptions: [] });
   }
 };

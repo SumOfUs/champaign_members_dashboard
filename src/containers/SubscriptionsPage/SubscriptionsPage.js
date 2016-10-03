@@ -3,7 +3,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { selectCurrentMember, selectAuthToken } from '../../store/selectors';
 import { selectAllSubscriptions } from './selectors';
-import { fetchSubscriptions } from './actions';
+import { fetchSubscriptions, deleteSubscription } from './actions';
 
 import { SubscriptionList } from '../../components/SubscriptionList';
 
@@ -16,7 +16,7 @@ export class SubscriptionsPage extends Component {
   render() {
     return (
       <div id="subscriptions-page">
-        <SubscriptionList subscriptions={this.props.subscriptions} />
+        <SubscriptionList {...this.props} />
       </div>
     );
   }
@@ -25,6 +25,7 @@ export class SubscriptionsPage extends Component {
 SubscriptionsPage.propTypes = {
   member: PropTypes.object.isRequired,
   fetchSubscriptions: PropTypes.func.isRequired,
+  deleteSubscription: PropTypes.func.isRequired,
   subscriptions: PropTypes.object,
 };
 
@@ -36,6 +37,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   fetchSubscriptions: (auth) => dispatch(fetchSubscriptions(auth)),
+  deleteSubscription: (id, auth) => dispatch(deleteSubscription(id, auth)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubscriptionsPage);
