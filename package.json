@@ -22,10 +22,13 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "country-data": "0.0.29",
     "font-awesome": "^4.6.3",
     "immutable": "^3.8.1",
     "moment": "^2.15.1",
     "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
+    "react-addons-shallow-compare": "^15.3.2",
     "react-bootstrap": "^0.30.3",
     "react-dom": "^15.3.2",
     "react-fontawesome": "^1.2.0",
@@ -33,12 +36,14 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
+    "react-selectize": "^2.0.3",
     "redux": "^3.6.0",
     "redux-form": "^6.0.5",
     "redux-immutable": "^3.0.8",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
-    "sanitize.css": "^4.1.0"
+    "sanitize.css": "^4.1.0",
+    "validator": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

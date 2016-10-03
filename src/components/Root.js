@@ -6,6 +6,7 @@ import App from './App/App';
 import RequireAuthentication from '../containers/RequireAuthentication';
 import HomePage from '../containers/HomePage/HomePage';
 import LoginPage from '../containers/LoginPage/LoginPage';
+import RegistrationPage from '../containers/RegistrationPage/RegistrationPage';
 import SubscriptionsPage from '../containers/SubscriptionsPage/SubscriptionsPage';
 import PaymentMethodsPage from '../containers/PaymentMethodsPage/PaymentMethodsPage';
 
@@ -16,6 +17,7 @@ export function Root(props) {
       <Router history={history} render={render}>
         <Route component={App}>
           <Route path="/login" name="login" component={LoginPage} />
+          <Route path="/register" name="register" component={RegistrationPage} />
           <Route component={RequireAuthentication}>
             <Route path="/" name="home" component={HomePage}>
             <IndexRoute component={SubscriptionsPage} />
