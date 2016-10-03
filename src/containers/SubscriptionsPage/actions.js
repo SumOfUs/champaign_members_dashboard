@@ -1,4 +1,3 @@
-import { getSubscriptions } from '../../services/subscriptions'
 import { api } from '../../services/helpers'
 
 export const FETCH_SUBSCRIPTIONS_REQUEST = 'FETCH_SUBSCRIPTIONS_REQUEST'
@@ -15,7 +14,7 @@ export const deleteSubscription = (id, token) => dispatch => {
   return api.delete(`braintree/subscriptions/${id}`, { authorization: `Bearer ${token}` })
     .then(response => {
       dispatch({ type: DELETE_SUBSCRIPTION_SUCCESS, payload: id })
-      return response
+      return response.json()
     })
     .catch(error => {
       dispatch({ type: DELETE_SUBSCRIPTION_FAILURE, payload: id, error })
