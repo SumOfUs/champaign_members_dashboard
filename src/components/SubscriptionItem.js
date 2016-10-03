@@ -7,7 +7,7 @@ import {
 
 
 export const SubscriptionItem = (props) => {
-  const deleting = false;
+  const deleting = false
 
   const onCancelClick = (id,event) => {
     let confirm = window.confirm("Are you sure you want to cancel your recurring donation?")
