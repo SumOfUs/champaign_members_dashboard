@@ -12,7 +12,7 @@ export const SubscriptionItem = (props) => {
   const onCancelClick = (id,event) => {
     let confirm = window.confirm("Are you sure you want to cancel your recurring donation?")
     if(confirm) {
-      props.deleteSubscription(id, props.auth);
+      props.deleteSubscription(id, props.auth)
     }
   }
 
