@@ -2,7 +2,7 @@ const { REACT_APP_CHAMPAIGN_URL } = process.env;
 
 export const BASE_URL = `${REACT_APP_CHAMPAIGN_URL}/api/stateless`;
 
-function checkStatus(response) {
+export function checkStatus(response) {
   if (response.ok) {
     return response;
   }
