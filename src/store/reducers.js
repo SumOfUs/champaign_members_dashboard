@@ -8,6 +8,7 @@ import { LOGIN_SUCCESS } from '../containers/LoginPage/actions';
 import { authReducer } from '../containers/LoginPage/reducers';
 import { subscriptionsReducer } from '../containers/SubscriptionsPage/reducers';
 import { paymentMethodsReducer } from '../containers/PaymentMethodsPage/payment-methods.reducers';
+import { registrationReducer } from '../containers/RegistrationPage/RegistrationPage.reducers';
 
 const initialGlobalState = fromJS({
   appName: `Member's Dashboard`,
@@ -45,4 +46,5 @@ export default {
   auth: authReducer,
   subscriptions: subscriptionsReducer,
   paymentMethods: paymentMethodsReducer,
+  registration: registrationReducer,
 };

@@ -1,30 +1,31 @@
+import { api } from '../../services/helpers';
+
 export const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
 export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
 export const REGISTRATION_FAILURE = 'REGISTRATION_FAILURE';
 
-const URL = 'http://localhost:3000';
-
 export function register(data) {
   return dispatch => {
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(data),
-    };
-
     dispatch({ type: REGISTRATION_REQUEST, payload: data });
-
-    return fetch(`${URL}/api/members`, options)
+    return api.post('members', data)
       .then(response => {
-        console.log(response);
-        return response.body();
+        return response.json();
       })
-      .then(r => {
-        dispatch({ type: REGISTRATION_SUCCESS, payload: r });
-        return r;
+      .then(member => {
+        dispatch({ type: REGISTRATION_SUCCESS, payload: member });
+        return member;
       })
       .catch(e => {
-        dispatch({ type: REGISTRATION_FAILURE, payload: e });
-        throw e;
+        return e.json()
+          .then(response => {
+            dispatch({ type: REGISTRATION_FAILURE, payload: response.errors });
+            throw response.errors;
+          })
+          .catch(error => {
+            error = { _error: 'Unexpected error' };
+            dispatch({ type: REGISTRATION_FAILURE, payload: error });
+            throw error;
+          });
       });
   };
 }
