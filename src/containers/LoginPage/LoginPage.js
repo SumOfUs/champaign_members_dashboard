@@ -92,7 +92,6 @@ export class LoginPage extends Component {
         <div className="LoginPage-background"></div>
         <div className="LoginPage-overlay container">
           <h1 className="LoginPage-title">Login</h1>
-          <Link to="/register">Register</Link>
           <form onSubmit={handleSubmit(this.onSubmit)} className="LoginPage-form">
             <LoadingOverlay enabled={submitting} />
             {submitFailed ? this.submitFailedMessage() : null}
@@ -119,7 +118,7 @@ export class LoginPage extends Component {
 
             <Checkbox>Remember me</Checkbox>
 
-            <Button type="submit" disabled={submitting}>Log in</Button>
+            <Button type="submit" disabled={submitting}>Log in</Button> or <Link to="/register">Register</Link>
           </form>
         </div>
       </section>
