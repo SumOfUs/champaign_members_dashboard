@@ -32,7 +32,7 @@ export const SubscriptionList = props => {
               <th>Created</th>
               <th>Price</th>
               <th>No. of Transactions</th>
-              <th colSpan='2'></th>
+              <th colSpan='1'></th>
             </tr>
           </thead>
           <tbody>

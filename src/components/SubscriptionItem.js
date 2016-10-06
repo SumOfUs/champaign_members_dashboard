@@ -27,9 +27,6 @@ export const SubscriptionItem = (props) => {
       <td>{props.currency} {props.amount}</td>
       <td>{props.transactions.length}</td>
       <td>
-        <Button onClick={onViewClick}>View</Button>
-      </td>
-      <td>
         <Button onClick={onCancelClick.bind(this, props.id)}>
           { deleting ? <FontAwesome name='circle-o-notch' spin /> : 'Cancel' }
         </Button>
