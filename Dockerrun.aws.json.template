@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "members-dashboard-deployment",
+    "Key": "dockercfg"
+  },
+  "Image": {
+    "Name": "osahyoun/members_dashboard:<TAG>",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ],
+  "Volumes": [],
+  "Logging": "/webapp/log"
+}
+
+
+
+
+

@@ -1,0 +1,16 @@
+# circle.yml
+machine:
+  node:
+    version: 6.1.0
+  services:
+    - docker
+
+deployment:
+  elasticbeanstalk:
+    branch: ci
+    commands:
+      - REACT_APP_CHAMPAIGN_URL=https://action-staging.sumofus.org npm build
+      - docker build --rm=false -t osahyoun/member_dashboard:$CIRCLE_SHA1 .
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - ./deploy.sh $CIRCLE_SHA1
+
