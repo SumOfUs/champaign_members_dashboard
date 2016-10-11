@@ -4,9 +4,10 @@ import { Link } from 'react-router';
 import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 import { Field, SubmissionError, reduxForm } from 'redux-form/immutable';
-import { Alert, Button, Checkbox, ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
+import { Alert, Button, Checkbox } from 'react-bootstrap';
 import { FieldComponent } from '../../components/Forms/FieldComponent';
 import { LoadingOverlay } from '../../components/LoadingOverlay/LoadingOverlay';
+import SessionPageWrapper from '../../components/SessionPageWrapper/SessionPageWrapper';
 
 import {
   selectAuthToken,
@@ -16,8 +17,6 @@ import {
 import { login } from './actions';
 import validate from './validate';
 import './LoginPage.css';
-
-const { Feedback } = FormControl;
 
 function errorHandler(response) {
   switch (response.status) {
@@ -88,40 +87,34 @@ export class LoginPage extends Component {
     }
 
     return (
-      <section id="login-page">
-        <div className="LoginPage-background"></div>
-        <div className="LoginPage-overlay container">
-          <h1 className="LoginPage-title">Login</h1>
-          <form onSubmit={handleSubmit(this.onSubmit)} className="LoginPage-form">
+      <SessionPageWrapper>
+        <div id="LoginPage" className="LoginPage-container">
+          <form onSubmit={handleSubmit(this.onSubmit)} className="LoginPage-form form-big">
+            <h2 className="LoginPage-title">Login</h2>
             <LoadingOverlay enabled={submitting} />
             {submitFailed ? this.submitFailedMessage() : null}
-            <FormGroup controlId="loginEmail">
-              <ControlLabel>Email</ControlLabel>
-              <Field
-                name="email"
-                type="text"
-                component={FieldComponent}
-                disabled={submitting}
-              />
-            </FormGroup>
+            <Field
+              name="email"
+              type="text"
+              placeholder="Email"
+              component={FieldComponent}
+              disabled={submitting}
+            />
 
-            <FormGroup controlId="loginPassword">
-              <ControlLabel>Password</ControlLabel>
-              <Field
-                name="password"
-                type="password"
-                component={FieldComponent}
-                disabled={submitting}
-              />
-              <Feedback />
-            </FormGroup>
+            <Field
+              name="password"
+              type="password"
+              placeholder="Password"
+              component={FieldComponent}
+              disabled={submitting}
+            />
 
             <Checkbox>Remember me</Checkbox>
 
             <Button type="submit" disabled={submitting}>Log in</Button> or <Link to="/register">Register</Link>
           </form>
         </div>
-      </section>
+      </SessionPageWrapper>
     );
   }
 }

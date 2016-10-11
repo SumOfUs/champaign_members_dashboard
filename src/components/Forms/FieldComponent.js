@@ -38,14 +38,20 @@ export const FieldComponent = (props) => {
 
   return (
     <FormGroup controlId={name} validationState={validationState}>
-      <ControlLabel>{title}</ControlLabel>
-      <FieldErrorMessage message={error} />
+      { title && <ControlLabel>{title}</ControlLabel> }
+      { error && <FieldErrorMessage message={error} /> }
       { type === 'select' && <SelectComponent {...props} /> }
-      { type !== 'select' && <FormControl type={props.type} disabled={props.disabled} {...props.input} /> }
+      { type !== 'select' &&
+        <FormControl
+          type={props.type}
+          disabled={props.disabled}
+          placeholder={props.placeholder}
+          {...props.input}
+        />
+      }
       { props.meta.touched
         && props.meta.error
         && <em className="text-danger">{props.meta.error}</em> }
-      <FormControl.Feedback />
     </FormGroup>
   );
 };

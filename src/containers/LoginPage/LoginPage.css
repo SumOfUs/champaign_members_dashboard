@@ -1,43 +1,22 @@
 #LoginPage {
-  color: white;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 
-.LoginPage-background {
-  background-size: cover;
-  background-color: #414141;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-image: url(https://d1fj2p9hyaanfd.cloudfront.net/assets/champaign/backgrounds/dune-f8c471b91f23c98145df6be52dec7c7f391e86033a9bd955f0894b7a473b4117.jpg);
+.LoginPage-container {
+  max-width: 700px;
+  margin: auto;
 }
-
 .LoginPage-title {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  background-color: #f5f5f5;
-  width: 100%;
-  padding: 20px 40px 15px;
-  border-bottom: 1px solid #e3e3e3;
-  text-align: left;
-  color: #222;
-  font-size: 30px;
+  line-height: 1.1em;
+  margin-bottom: 20px;
+  padding: 0 0.25em;
 }
 
 .LoginPage-overlay {
   background-color: white;
+  border: 1px solid #cecece;
   color: black;
   max-width: 500px;
-  box-shadow: black 0 3px 10px;
   background: white;
   max-width: 500px;
   margin: 90px auto 0;
@@ -47,5 +26,6 @@
 }
 
 .LoginPage-form {
-  position: relative;
+  max-width: 300px;
+  margin: 20px auto;
 }

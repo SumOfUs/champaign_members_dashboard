@@ -13,6 +13,7 @@ import {
 import { register } from './RegistrationPage.actions';
 import RegistrationForm from './RegistrationForm';
 import RegistrationSuccess from './RegistrationSuccess';
+import SessionPageWrapper from '../../components/SessionPageWrapper/SessionPageWrapper';
 
 import './RegistrationPage.css';
 
@@ -52,9 +53,8 @@ export class RegistrationPage extends Component {
   render() {
     const { submitting, submitSucceeded, valid } = this.props;
     return (
-      <section id="login-page">
-        <div className="RegistrationPage-background" />
-        <div className="RegistrationPage-overlay container">
+      <SessionPageWrapper>
+        <section className="RegistrationPage-container">
           <h1 className="RegistrationPage-title">Registration</h1>
           { !submitSucceeded &&
             <RegistrationForm
@@ -68,8 +68,8 @@ export class RegistrationPage extends Component {
           }
 
           { submitSucceeded && <RegistrationSuccess email={this.props.member.get('email')}/>}
-        </div>
-      </section>
+        </section>
+      </SessionPageWrapper>
     );
   }
 }
