@@ -35,7 +35,8 @@ export const registrationReducer = (state = initialState, action = {}) => {
       return state.merge({
         submitting: false,
         success: false,
-        errors: action.payload,
+        errors: action.payload.errors,
+        error: action.payload.error,
       });
     default:
       return state;

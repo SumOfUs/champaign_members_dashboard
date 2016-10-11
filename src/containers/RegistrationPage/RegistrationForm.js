@@ -30,7 +30,7 @@ export default function RegistrationForm(props) {
             disabled={submitting}
           />)}
 
-        <Button type="submit" disabled={submitting || success || !valid }>Join SumOfUs</Button>
+        <Button type="submit" disabled={submitting || !valid }>Join SumOfUs</Button>
       </form>
     </div>
   );

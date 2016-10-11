@@ -26,13 +26,18 @@ export function register(data) {
         if (typeof e.json === 'function') {
           return e.json()
             .then(response => {
-              dispatch({ type: REGISTRATION_FAILURE, payload: response.errors });
-              throw response.errors;
-            })
-            .catch(error => {
-              error = { _error: 'Unexpected error' };
-              dispatch({ type: REGISTRATION_FAILURE, payload: error });
-              throw error;
+              const payload = { errors: response.errors };
+
+              if (response.errors.authentication) {
+                payload.error = 'Email is already registered';
+              }
+
+              dispatch({ type: REGISTRATION_FAILURE, payload });
+              throw payload.errors;
+            }, failure => {
+              const payload = { error: 'Unexpected error' };
+              dispatch({ type: REGISTRATION_FAILURE, payload});
+              throw payload;
             });
         }
       });

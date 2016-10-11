@@ -49,21 +49,8 @@ export class RegistrationPage extends Component {
       });
   }
 
-  getFieldError(field) {
-    if (!this.props.errors) {
-      return null;
-    }
-    const error = this.props.errors.get(field.name);
-
-    if (!error) {
-      return null;
-    }
-
-    return error.first();
-  }
-
   render() {
-    const { submitting, submitSucceeded, submitFailed, valid } = this.props;
+    const { submitting, submitSucceeded, valid } = this.props;
     return (
       <section id="login-page">
         <div className="RegistrationPage-background" />
@@ -73,7 +60,7 @@ export class RegistrationPage extends Component {
             <RegistrationForm
               error={this.props.error}
               fields={this.fields}
-              onSubmit={this.props.handleSubmit(this.onSubmit)}
+              onSubmit={this.props.handleSubmit(this.onSubmit.bind(this)).bind(this)}
               submitting={submitting}
               success={submitSucceeded}
               valid={valid}

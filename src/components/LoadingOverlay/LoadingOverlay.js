@@ -4,11 +4,8 @@ import './LoadingOverlay.css';
 
 export const LoadingOverlay = ({ enabled }) => {
   if (!enabled) {
-    console.log('enabled is false');
     return null;
   }
-
-  console.log('enabled is true');
 
   return (
     <div className="LoadingOverlay-overlay">
