@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { Button } from 'react-bootstrap';
 import FieldComponent from '../../components/Forms/FieldComponent';
 import ErrorMessage from '../../components/ErrorMessage';
-import { LoadingOverlay } from '../../components/LoadingOverlay/LoadingOverlay';
 import { Field } from 'redux-form/immutable';
 
 
@@ -13,15 +12,15 @@ export default function RegistrationForm(props) {
     fields,
     onSubmit,
     submitting,
-    success,
     valid,
   } = props;
 
+  const disableSubmit = submitting || !valid;
+
   return (
     <div id="registration-form">
-      <ErrorMessage message={error} />
-      <form className="RegistrationPage-form" onSubmit={onSubmit}>
-        <LoadingOverlay enabled={submitting} />
+      <form className="RegistrationPage-form form-big" onSubmit={onSubmit}>
+        <ErrorMessage message={error} />
         {fields.map(field =>
           <Field
             {...field}
@@ -30,7 +29,9 @@ export default function RegistrationForm(props) {
             disabled={submitting}
           />)}
 
-        <Button type="submit" disabled={submitting || !valid }>Join SumOfUs</Button>
+      <Button type="submit" disabled={disableSubmit}>
+        {!submitting ? 'Register' : 'Registering...'}
+      </Button>
       </form>
     </div>
   );

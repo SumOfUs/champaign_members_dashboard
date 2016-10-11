@@ -11,5 +11,6 @@
 }
 
 .RegistrationPage-form {
-  position: relative;
+  max-width: 300px;
+  margin: 20px auto;
 }

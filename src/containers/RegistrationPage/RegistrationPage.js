@@ -17,6 +17,38 @@ import SessionPageWrapper from '../../components/SessionPageWrapper/SessionPageW
 
 import './RegistrationPage.css';
 
+function validate(values) {
+  const ERRORS = {
+    REQUIRED: 'Required',
+    EMAIL_REGEX: 'Invalid email address',
+    PASSWORD_LENGTH: 'Must be 6 or more characters in length',
+    PASSWORD_CONFIRMATION: `Passwords don't match`,
+  };
+
+  values = values.toJS();
+
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = ERRORS.REQUIRED;
+  } else if (!isEmail(values.email)) {
+    errors.email = ERRORS.EMAIL_REGEX;
+  }
+
+  if (!values.password) {
+    errors.password = ERRORS.REQUIRED;
+  } else if (!isLength(values.password, { min: 6 })) {
+    errors.password = ERRORS.PASSWORD_LENGTH;
+  }
+
+  if (!values.password_confirmation || values.password_confirmation !== values.password) {
+    errors.password_confirmation = ERRORS.PASSWORD_CONFIRMATION;
+  }
+
+  return errors;
+}
+
+
 export class RegistrationPage extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
@@ -29,15 +61,15 @@ export class RegistrationPage extends Component {
 
   fields = [{
     name: 'email',
-    title: 'Email',
+    placeholder: 'Email',
     type: 'text',
   }, {
     name: 'password',
-    title: 'Password',
+    placeholder: 'Password',
     type: 'password',
   }, {
     name: 'password_confirmation',
-    title: 'Password confirmation',
+    placeholder: 'Password confirmation',
     type: 'password',
   }];
 
@@ -72,45 +104,6 @@ export class RegistrationPage extends Component {
       </SessionPageWrapper>
     );
   }
-}
-
-function validate(values) {
-  const ERRORS = {
-    REQUIRED: 'Required',
-    EMAIL_REGEX: 'Invalid email address',
-    PASSWORD_LENGTH: 'Must be 6 or more characters in length',
-    PASSWORD_CONFIRMATION: `Passwords don't match`,
-  };
-
-  values = values.toJS();
-
-  const errors = {};
-
-  if (!values.name) {
-    errors.name = ERRORS.REQUIRED;
-  }
-
-  if (!values.email) {
-    errors.email = ERRORS.REQUIRED;
-  } else if (!isEmail(values.email)) {
-    errors.email = ERRORS.EMAIL_REGEX;
-  }
-
-  if (!values.country) {
-    errors.country = ERRORS.REQUIRED;
-  }
-
-  if (!values.password) {
-    errors.password = ERRORS.REQUIRED;
-  } else if (!isLength(values.password, { min: 6 })) {
-    errors.password = ERRORS.PASSWORD_LENGTH;
-  }
-
-  if (!values.password_confirmation || values.password_confirmation !== values.password) {
-    errors.password_confirmation = ERRORS.PASSWORD_CONFIRMATION;
-  }
-
-  return errors;
 }
 
 const mapStateToProps = createStructuredSelector({
