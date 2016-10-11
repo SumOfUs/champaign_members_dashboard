@@ -1,6 +1,7 @@
 import { api } from '../../services/helpers';
 
 export const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
+export const REGISTRATION_REQUEST_FAILED = 'REGISTRATION_REQUEST_FAILED';
 export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
 export const REGISTRATION_FAILURE = 'REGISTRATION_FAILURE';
 
@@ -16,16 +17,24 @@ export function register(data) {
         return member;
       })
       .catch(e => {
-        return e.json()
-          .then(response => {
-            dispatch({ type: REGISTRATION_FAILURE, payload: response.errors });
-            throw response.errors;
-          })
-          .catch(error => {
-            error = { _error: 'Unexpected error' };
-            dispatch({ type: REGISTRATION_FAILURE, payload: error });
-            throw error;
-          });
+        if (e instanceof TypeError) {
+          const message = `Something's wrong. Please try again later`;
+          dispatch({ type: REGISTRATION_REQUEST_FAILED, payload: message });
+          throw e.message;
+        }
+
+        if (typeof e.json === 'function') {
+          return e.json()
+            .then(response => {
+              dispatch({ type: REGISTRATION_FAILURE, payload: response.errors });
+              throw response.errors;
+            })
+            .catch(error => {
+              error = { _error: 'Unexpected error' };
+              dispatch({ type: REGISTRATION_FAILURE, payload: error });
+              throw error;
+            });
+        }
       });
   };
 }

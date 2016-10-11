@@ -2,6 +2,11 @@ import { createSelector } from 'reselect';
 
 export const selectRegistrationPageState = () => state => state.get('registration');
 
+export const selectRegistrationPageField = field => createSelector(
+  selectRegistrationPageState(),
+  state => state.get(field)
+);
+
 export const selectRegistrationPageSubmitting = () => createSelector(
   selectRegistrationPageState(),
   state => state.get('submitting')

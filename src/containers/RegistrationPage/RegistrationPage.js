@@ -5,7 +5,7 @@ import { SubmissionError, reduxForm } from 'redux-form/immutable';
 import { isEmail, isLength } from 'validator';
 
 import {
-  selectRegistrationPageErrors,
+  selectRegistrationPageField,
   selectRegistrationPageMember,
   selectRegistrationPageSubmitting,
   selectRegistrationPageSuccess,
@@ -13,8 +13,6 @@ import {
 import { register } from './RegistrationPage.actions';
 import RegistrationForm from './RegistrationForm';
 import RegistrationSuccess from './RegistrationSuccess';
-
-import countries from './countries.json';
 
 import './RegistrationPage.css';
 
@@ -71,7 +69,7 @@ export class RegistrationPage extends Component {
         <div className="RegistrationPage-background" />
         <div className="RegistrationPage-overlay container">
           <h1 className="RegistrationPage-title">Registration</h1>
-          { !submitting && !submitSucceeded &&
+          { !submitSucceeded &&
             <RegistrationForm
               error={this.props.error}
               fields={this.fields}
@@ -129,7 +127,8 @@ function validate(values) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  errors: selectRegistrationPageErrors(),
+  error: selectRegistrationPageField('error'),
+  errors: selectRegistrationPageField('errors'),
   member: selectRegistrationPageMember(),
   submitting: selectRegistrationPageSubmitting(),
   success: selectRegistrationPageSuccess(),
