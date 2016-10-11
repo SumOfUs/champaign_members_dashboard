@@ -42,6 +42,7 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4",
     "sanitize.css": "^4.1.0",
+    "sou-assets": "git://github.com/sumofus/sou-assets.git#npm",
     "validator": "^6.0.0"
   },
   "scripts": {
