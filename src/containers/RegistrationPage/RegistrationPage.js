@@ -29,22 +29,8 @@ export class RegistrationPage extends Component {
   };
 
   fields = [{
-    name: 'name',
-    title: 'Name',
-    type: 'text',
-  }, {
     name: 'email',
     title: 'Email',
-    type: 'text',
-  }, {
-    name: 'country',
-    title: 'Country',
-    type: 'select',
-    placeholder: 'Select a country',
-    options: countries.map(c => ({ value: c.code, label: c.name })),
-  }, {
-    name: 'postal',
-    title: 'Post code',
     type: 'text',
   }, {
     name: 'password',
@@ -58,8 +44,6 @@ export class RegistrationPage extends Component {
 
   onSubmit(data, dispatch) {
     const registrationData = data.toJS();
-
-    registrationData.country = registrationData.country.value;
 
     return dispatch(register({ member: registrationData }))
       .catch(errors => {
@@ -87,7 +71,7 @@ export class RegistrationPage extends Component {
         <div className="RegistrationPage-background" />
         <div className="RegistrationPage-overlay container">
           <h1 className="RegistrationPage-title">Registration</h1>
-          { !submitFailed && !submitSucceeded &&
+          { !submitting && !submitSucceeded &&
             <RegistrationForm
               error={this.props.error}
               fields={this.fields}
