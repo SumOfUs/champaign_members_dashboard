@@ -16,14 +16,9 @@ export const SubscriptionItem = (props) => {
     }
   };
 
-  const onViewClick = (event) => {
-    // toggle table to reveal transaction rows
-  };
-
   return (
     <tr>
-      <td>{props.billing_day_of_month}</td>
-      <td>{moment(props.created_at).format('l')}</td>
+      <td>{moment(props.created_at).format('LL')}</td>
       <td>{props.currency} {props.amount}</td>
       <td>{props.transactions.length}</td>
       <td>

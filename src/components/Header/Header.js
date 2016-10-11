@@ -7,10 +7,10 @@ import {
 import { Link } from 'react-router';
 
 import { MemberDropdownMenu } from './MemberDropdownMenu';
-import logo from './logo.png';
+import logo from 'sou-assets/images/logo-positive.png';
 
 export const Header = (props) => (
-  <Navbar inverse staticTop fluid>
+  <Navbar staticTop fluid>
     <Navbar.Header>
       <Navbar.Brand>
         <img role="presentation" src={logo} />
@@ -20,7 +20,7 @@ export const Header = (props) => (
     <Navbar.Collapse>
       <Nav pullRight>
         <NavItem eventKey={1}>
-          <Link to="/subscriptions">Subscriptions</Link>
+          <Link to="/subscriptions">Recurring Donations</Link>
         </NavItem>
         <NavItem eventKey={1}>
           <Link to="/payment-methods">Payment Methods</Link>

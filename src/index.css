@@ -57,7 +57,7 @@ h2 {
 
 p {
   font-size: 1em;
-  line-height: 1em;
+  line-height: 1.3em;
 }
 
 
@@ -122,4 +122,17 @@ form .checkbox {
 .btn-default[disabled],
 .btn-default[disabled]:hover {
   background-color: #cccccc;
+}
+
+/* Header / Navbar */
+
+.navbar-default {
+  border: none;
+  background-color: transparent;
+}
+
+/* Layout */
+.list-table {
+  margin: 2em 0;
+
 }

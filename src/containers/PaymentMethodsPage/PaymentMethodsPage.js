@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {
   Button,
-  PageHeader,
   Table,
 } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
@@ -70,6 +69,16 @@ export class PaymentMethodsPage extends Component {
     );
   }
 
+  emptyPaymentMethods() {
+    return (
+      <tr>
+        <td colSpan='2'>
+          <em>You don't have any payment methods</em>
+        </td>
+      </tr>
+    );
+  }
+
   renderPaymentMethods() {
     const paymentMethods = this.props.paymentMethods;
 
@@ -78,22 +87,18 @@ export class PaymentMethodsPage extends Component {
     if(paymentMethods.size > 0){
       list = paymentMethods.map(paymentMethod => this.renderPaymentMethodRow(paymentMethod));
     } else {
-      list = <tr><td colSpan='2'><h4>You don't have any payment methods</h4></td></tr>;
+      list = this.emptyPaymentMethods();
     }
 
-
-    // we want to display:
-    // - Paypal (email@example.com)
-    // - VISA card ending in `2345`
     return (
-      <Table striped bordered condensed hover>
+      <Table>
         <thead>
           <tr>
             <th colSpan='2'>Payment Method</th>
           </tr>
         </thead>
         <tbody>
-        { list }
+        {list}
         </tbody>
       </Table>
     );
@@ -104,7 +109,17 @@ export class PaymentMethodsPage extends Component {
     return (
       <div id="payment-methods-page">
         <div className="container">
-          <PageHeader>Your Payment Methods</PageHeader>
+          <h1 className="highlight">Your Payment Methods</h1>
+          <p>
+            Thanks for your supporting SumOfUs! Here, you can view and delete
+            any payment methods you've saved with SumOfUs to make donating
+            easier and more secure. To add a new payment method,
+            just <a href="http://sumofus.org/campaigns/">make a donation to SumOfUs</a> and make sure
+            you've opted to store your payment details. You can always be in touch
+            at <a href="mailto:donations@sumofus.org">donations@sumofus.org</a> with
+            any questions!
+          </p>
+
           { this.props.paymentMethods ? this.renderPaymentMethods() : null }
         </div>
       </div>
