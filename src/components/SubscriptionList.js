@@ -1,24 +1,24 @@
-import React, { PropTypes } from 'react'
-import Immutable from 'immutable'
+import React, { PropTypes } from 'react';
+import Immutable from 'immutable';
 
 import {
   PageHeader,
   Table,
-} from 'react-bootstrap'
+} from 'react-bootstrap';
 
 import { SubscriptionItem } from './SubscriptionItem';
 
 const NoSubscriptions = props => (
   <tr><td colSpan='6'><h4>You don't have any recurring donations</h4></td></tr>
-)
+);
 
 export const SubscriptionList = props => {
-  let subscriptions
+  let subscriptions;
 
   if(props.subscriptions.size > 0) {
-    subscriptions = props.subscriptions.map(subscription=> <SubscriptionItem key={subscription.get('id')} deleteSubscription={props.deleteSubscription} auth={props.auth} {...subscription.toJS()} />)
+    subscriptions = props.subscriptions.map(subscription=> <SubscriptionItem key={subscription.get('id')} deleteSubscription={props.deleteSubscription} auth={props.auth} {...subscription.toJS()} />);
   } else {
-    subscriptions = <NoSubscriptions />
+    subscriptions = <NoSubscriptions />;
   }
 
   return(
@@ -41,9 +41,9 @@ export const SubscriptionList = props => {
         </Table>
       </div>
     </div>
-  )
-}
+  );
+};
 
 SubscriptionList.propTypes = {
   subscriptions: PropTypes.instanceOf(Immutable.List)
-}
+};

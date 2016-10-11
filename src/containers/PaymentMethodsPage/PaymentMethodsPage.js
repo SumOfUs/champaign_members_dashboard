@@ -71,14 +71,14 @@ export class PaymentMethodsPage extends Component {
   }
 
   renderPaymentMethods() {
-    const paymentMethods = this.props.paymentMethods
+    const paymentMethods = this.props.paymentMethods;
 
-    let list
+    let list;
 
     if(paymentMethods.size > 0){
-      list = paymentMethods.map(paymentMethod => this.renderPaymentMethodRow(paymentMethod))
+      list = paymentMethods.map(paymentMethod => this.renderPaymentMethodRow(paymentMethod));
     } else {
-      list = <tr><td colSpan='2'><h4>You don't have any payment methods</h4></td></tr>
+      list = <tr><td colSpan='2'><h4>You don't have any payment methods</h4></td></tr>;
     }
 
 
