@@ -22,7 +22,7 @@ function errorHandler(response) {
   switch (response.status) {
     case 401:
     case 400:
-      return 'Invalid user or password';
+      return 'Invalid email or password';
     case 0:
     default:
       return 'There was an error with the server';
