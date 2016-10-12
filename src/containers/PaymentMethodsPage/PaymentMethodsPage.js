@@ -114,7 +114,7 @@ export class PaymentMethodsPage extends Component {
             Thanks for your supporting SumOfUs! Here, you can view and delete
             any payment methods you've saved with SumOfUs to make donating
             easier and more secure. To add a new payment method,
-            just <a href="http://sumofus.org/campaigns/">make a donation to SumOfUs</a> and make sure
+            just <a href="https://actions.sumofus.org/a/donate">make a donation to SumOfUs</a> and make sure
             you've opted to store your payment details. You can always be in touch
             at <a href="mailto:donations@sumofus.org">donations@sumofus.org</a> with
             any questions!
