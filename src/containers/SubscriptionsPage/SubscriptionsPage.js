@@ -24,7 +24,7 @@ export class SubscriptionsPage extends Component {
           you can view and cancel them here.
         </p>
         <p>If you'd like to set up a new recurring donation to support our
-          work, <a href="http://sumofus.org/campaigns/">you can do so here</a>.
+          work, <a href="https://actions.sumofus.org/a/donate">you can do so here</a>.
           You can always be in touch
           at <a href="mailto:donations@sumofus.org">donations@sumofus.org</a> with
           any questions!
