@@ -11,12 +11,8 @@ const LOCAL_STORAGE_KEY = 'auth';
 
 function isTokenExpired(token) {
   const b64payload = token.split('.')[1];
-
   const payload = JSON.parse(atob(b64payload));
-
-  // date is in seconds, we need to conver to ms
-  const { exp } = payload;
-  const tokenExpiryDate = new Date(exp * 1000);
+  const tokenExpiryDate = new Date(payload.exp * 1000);
   const now = new Date();
 
   // We don't have token renewal with a refreshToken so we
@@ -52,13 +48,13 @@ export function getPersistedState() {
   }
 }
 
+export function setAuthenticationToken(token) {
+  return { type: SET_AUTHENTICATION_TOKEN, payload: { token } };
+}
+
 export function logout() {
   deleteFromLocalStorage();
   return { type: LOGOUT_REQUEST };
-}
-
-export function setAuthenticationToken(token) {
-  return { type: SET_AUTHENTICATION_TOKEN, payload: { token } };
 }
 
 export const login = credentials => dispatch => {
@@ -72,6 +68,7 @@ export const login = credentials => dispatch => {
     .catch(error => {
       deleteFromLocalStorage();
       dispatch({ type: LOGIN_ERROR, error });
-      return error.body();
+      console.log('error:', error);
+      throw error;
     });
 };
