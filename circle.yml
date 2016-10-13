@@ -1,13 +1,13 @@
 # circle.yml
 machine:
   node:
-    version: 6.1.0
+    version: 6.7.0
   services:
     - docker
 
 deployment:
   elasticbeanstalk:
-    branch: ci
+    branch: development
     commands:
       - REACT_APP_CHAMPAIGN_URL=https://action-staging.sumofus.org npm build
       - docker build --rm=false -t osahyoun/member_dashboard:$CIRCLE_SHA1 .
