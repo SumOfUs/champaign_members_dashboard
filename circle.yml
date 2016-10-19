@@ -9,8 +9,8 @@ deployment:
   elasticbeanstalk:
     branch: development
     commands:
-      - REACT_APP_CHAMPAIGN_URL=https://action-staging.sumofus.org npm run build
-      - docker build --rm=false -t osahyoun/member_dashboard:$CIRCLE_SHA1 .
+      - REACT_APP_CHAMPAIGN_URL=https://actions.sumofus.org npm run build
+      - docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - ./deploy.sh $CIRCLE_SHA1
 

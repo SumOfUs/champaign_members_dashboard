@@ -2,7 +2,7 @@
 
 SHA1=$1
 
-docker push osahyoun/members_dashboard:$SHA1
+docker push soutech/members_dashboard:$SHA1
 
 EB_BUCKET=members-dashboard-deployment
 DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json

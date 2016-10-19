@@ -5,7 +5,7 @@
     "Key": "dockercfg"
   },
   "Image": {
-    "Name": "osahyoun/members_dashboard:<TAG>",
+    "Name": "soutech/members_dashboard:<TAG>",
     "Update": "true"
   },
   "Ports": [
