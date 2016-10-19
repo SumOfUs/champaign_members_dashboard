@@ -1,8 +1,6 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Authentication": {
-    "Bucket": "members-dashboard-deployment",
-    "Key": "dockercfg"
   },
   "Image": {
     "Name": "soutech/members_dashboard:<TAG>",
