@@ -6,11 +6,18 @@ machine:
     - docker
 
 deployment:
-  elasticbeanstalk:
+  production:
     branch: development
     commands:
       - REACT_APP_CHAMPAIGN_URL=https://actions.sumofus.org npm run build
       - docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - ./deploy.sh $CIRCLE_SHA1
+      - ./deploy.sh $CIRCLE_SHA1 members-dashboard-deployment members-dashboard-env-production members.sumofus.org
+  staging:
+    branch: ops
+    commands:
+      - REACT_APP_CHAMPAIGN_URL=https://action-staging.sumofus.org npm run build
+      - docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - ./deploy.sh $CIRCLE_SHA1 members-dashboard-deployment members-dashboard-staging members-dashboard-staging.us-west-2.elasticbeanstalk.com
 

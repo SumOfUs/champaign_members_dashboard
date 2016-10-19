@@ -3,7 +3,7 @@
   "Authentication": {
   },
   "Image": {
-    "Name": "osahyoun/members_dashboard:latest"
+    "Name": "soutech/members_dashboard:latest"
   },
   "Ports": [
     {
