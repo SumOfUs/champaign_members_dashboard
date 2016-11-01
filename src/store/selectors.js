@@ -28,6 +28,16 @@ export const selectError = () => createSelector(
   globalState => globalState.get('error')
 );
 
+export const selectLocale = () => createSelector(
+  selectGlobal(),
+  globalState => globalState.get('locale')
+);
+
+export const selectMessages = () => createSelector(
+  selectGlobal(),
+  globalState => globalState.get('messages')
+);
+
 export const selectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;

@@ -9,9 +9,13 @@ import { FieldComponent } from '../../components/Forms/FieldComponent';
 import { LoadingOverlay } from '../../components/LoadingOverlay/LoadingOverlay';
 import SessionPageWrapper from '../../components/SessionPageWrapper/SessionPageWrapper';
 
+import {FormattedMessage, defineMessages, injectIntl} from 'react-intl';
+
+
 import {
   selectAuthToken,
   selectCurrentMember,
+  selectLocale,
 } from '../../store/selectors';
 
 import { login } from './actions';
@@ -40,6 +44,7 @@ export class LoginPage extends Component {
     error: PropTypes.string,
     token: PropTypes.string,
     member: PropTypes.object,
+    locale: PropTypes.string.isRequired,
   };
 
   componentWillMount() {
@@ -86,17 +91,41 @@ export class LoginPage extends Component {
       return (null);
     }
 
+    const i18n = defineMessages({
+      email: {
+        id: 'form.email',
+        defaultMessage: 'Email'
+      },
+      password: {
+        id: 'form.password',
+        defaultMessage: 'Password'
+      },
+      login: {
+        id: 'login.login'
+      },
+      register: {
+        id: 'login.register'
+      }
+    })
+
+    const {formatMessage} = this.props.intl;
+
     return (
       <SessionPageWrapper>
         <div id="LoginPage" className="LoginPage-container">
           <form onSubmit={handleSubmit(this.onSubmit)} className="LoginPage-form form-big">
-            <h2 className="LoginPage-title">Login</h2>
+            <h2 className="LoginPage-title">
+             <FormattedMessage
+                id="login.title"
+              />
+            </h2>
             <LoadingOverlay enabled={submitting} />
             {submitFailed ? this.submitFailedMessage() : null}
+
             <Field
               name="email"
               type="text"
-              placeholder="Email"
+              placeholder={formatMessage(i18n.email)}
               component={FieldComponent}
               disabled={submitting}
             />
@@ -104,14 +133,19 @@ export class LoginPage extends Component {
             <Field
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder={formatMessage(i18n.password)}
               component={FieldComponent}
               disabled={submitting}
             />
 
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>
+              <FormattedMessage id="form.remember_me" />
+            </Checkbox>
 
-            <Button type="submit" disabled={submitting}>Log in</Button> or <Link to="/register">Register</Link>
+            <Button type="submit" disabled={submitting}>{formatMessage(i18n.login)}</Button>
+            <Link to="/register">
+              <FormattedMessage id="login.register" />
+             </Link>
           </form>
         </div>
       </SessionPageWrapper>
@@ -122,6 +156,7 @@ export class LoginPage extends Component {
 const mapStateToProps = createStructuredSelector({
   token: selectAuthToken(),
   member: selectCurrentMember(),
+  locale: selectLocale(),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -129,6 +164,7 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default reduxForm({ form: 'login', validate })(
-  connect(mapStateToProps, mapDispatchToProps)(LoginPage)
-);
+const ReduxFormLoginPage = reduxForm({ form: 'login', validate })(LoginPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(ReduxFormLoginPage));
+

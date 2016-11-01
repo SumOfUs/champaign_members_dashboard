@@ -1,0 +1,33 @@
+{
+  "payment_methods.title": "Your Payment Methods",
+  "payment_methods.empty": "You don't have any payment methods",
+  "payment_methods.delete": "Delete",
+  "payment_methods.payment_method": "Payment Method",
+
+  "login.title": "Login",
+  "login.register": "Register",
+  "login.login": "LOG IN",
+
+  "form.email": "Email",
+  "form.password": "Password",
+  "form.password_confirmation": "Password confirmation",
+  "form.remember_me": "Remember me",
+
+  "subscriptions.title": "Your Recurring Donations",
+  "subscriptions.no_donations": "You don't have any recurring donations",
+  "subscriptions.created": "Created DE",
+  "subscriptions.donation_amount": "Donation Amount",
+  "subscriptions.donation_count": "No. of Transactions",
+  "subscriptions.cancel": "CANCEL",
+  "subscriptions.cancel_confirm": "Are you sure you want to cancel your recurring donation?",
+  "menu.recurring_donations": "Recurring Donations",
+  "menu.payment_methods": "Payment Methods",
+  "menu.sign_out": "Sign Out",
+
+  "registration.register": "Register",
+  "registration.registering": "Registering...",
+  "registration.required": "Required",
+  "registration.invalid_email": "Invalid email address",
+  "registration.password_mismatch": "Passwords don't match",
+  "registration.password_length": "Must be 6 or more characters in length"
+}

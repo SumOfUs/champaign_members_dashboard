@@ -1,28 +1,43 @@
 import React, { Component, PropTypes } from 'react';
+
 import {
   Button,
   Table,
 } from 'react-bootstrap';
+
 import FontAwesome from 'react-fontawesome';
 
 import { createStructuredSelector } from 'reselect';
+
 import { connect } from 'react-redux';
 
-import { selectCurrentMember, selectAuthToken } from '../../store/selectors';
+import {
+  selectCurrentMember,
+  selectAuthToken,
+  selectLocale,
+} from '../../store/selectors';
+
 import {
   selectPaymentMethods,
   selectDeletingPaymentMethods,
 } from './payment-methods.selectors';
+
 import {
   fetchPaymentMethods,
   deletePaymentMethod,
 } from './payment-methods.actions';
+
+import {FormattedMessage} from 'react-intl';
 
 const titleTemplates = {
   paypal_account: pm => `Paypal (${pm.email})`,
   credit_card: pm => `${pm.card_type} card ending in ${pm.last_4}`,
   default: () => 'Unknown payment method',
 };
+
+import translations from '../../react-intl/locales/messages';
+
+import Markdown from 'react-markdown';
 
 function paymentMethodTitle(paymentMethod) {
   const template = titleTemplates[paymentMethod.instrument_type] || titleTemplates.default;
@@ -53,7 +68,7 @@ export class PaymentMethodsPage extends Component {
 
     return (
       <Button onClick={() => this.onRowClick(item)} disabled={deleting}>
-        { deleting ? <FontAwesome name='circle-o-notch' spin /> : 'Delete' }
+        { deleting ? <FontAwesome name='circle-o-notch' spin /> : <FormattedMessage id="payment_methods.delete" />}
       </Button>
     );
   }
@@ -73,7 +88,7 @@ export class PaymentMethodsPage extends Component {
     return (
       <tr>
         <td colSpan='2'>
-          <em>You don't have any payment methods</em>
+          <FormattedMessage tagName='em' id="payment_methods.empty" />
         </td>
       </tr>
     );
@@ -94,7 +109,9 @@ export class PaymentMethodsPage extends Component {
       <Table>
         <thead>
           <tr>
-            <th colSpan='2'>Payment Method</th>
+            <th colSpan='2'>
+              <FormattedMessage id="payment_methods.payment_method" />
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -105,20 +122,14 @@ export class PaymentMethodsPage extends Component {
   }
 
   render() {
-
     return (
       <div id="payment-methods-page">
         <div className="container">
-          <h1 className="highlight">Your Payment Methods</h1>
-          <p>
-            Thanks for your supporting SumOfUs! Here, you can view and delete
-            any payment methods you've saved with SumOfUs to make donating
-            easier and more secure. To add a new payment method,
-            just <a href="https://actions.sumofus.org/a/donate">make a donation to SumOfUs</a> and make sure
-            you've opted to store your payment details. You can always be in touch
-            at <a href="mailto:donations@sumofus.org">donations@sumofus.org</a> with
-            any questions!
-          </p>
+          <h1 className="highlight">
+            <FormattedMessage id="payment_methods.title" />
+          </h1>
+
+          <Markdown source={translations[this.props.locale].pages.payment_methods.description} />
 
           { this.props.paymentMethods ? this.renderPaymentMethods() : null }
         </div>
@@ -132,6 +143,7 @@ const mapStateToProps = createStructuredSelector({
   paymentMethods: selectPaymentMethods(),
   deleting: selectDeletingPaymentMethods(),
   auth: selectAuthToken(),
+  locale: selectLocale(),
 });
 
 function mapDispatchToProps() {
