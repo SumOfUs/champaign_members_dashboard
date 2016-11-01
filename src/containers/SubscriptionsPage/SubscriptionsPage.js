@@ -1,9 +1,12 @@
 import React, { PropTypes, Component } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { selectCurrentMember, selectAuthToken } from '../../store/selectors';
+import { selectCurrentMember, selectAuthToken, selectLocale } from '../../store/selectors';
 import { selectAllSubscriptions } from './selectors';
 import { fetchSubscriptions, deleteSubscription } from './actions';
+import Markdown from 'react-markdown';
+import {FormattedMessage} from 'react-intl';
+import translations from '../../react-intl/locales/messages';
 
 import { SubscriptionList } from '../../components/SubscriptionList';
 
@@ -17,35 +20,30 @@ export class SubscriptionsPage extends Component {
     return (
       <div id="subscriptions-page" className="container">
         <h1 className="highlight">
-          Your Recurring Donations
+          <FormattedMessage id="subscriptions.title" />
         </h1>
-        <p>
-          If you have any recurring donations set up with SumOfUs,
-          you can view and cancel them here.
-        </p>
-        <p>If you'd like to set up a new recurring donation to support our
-          work, <a href="https://actions.sumofus.org/a/donate">you can do so here</a>.
-          You can always be in touch
-          at <a href="mailto:donations@sumofus.org">donations@sumofus.org</a> with
-          any questions!
-        </p>
+
+        <Markdown source={translations[this.props.locale].pages.subscriptions.description} />
+
         <SubscriptionList {...this.props} />
       </div>
     );
   }
-}
+};
 
 SubscriptionsPage.propTypes = {
   member: PropTypes.object.isRequired,
   fetchSubscriptions: PropTypes.func.isRequired,
   deleteSubscription: PropTypes.func.isRequired,
   subscriptions: PropTypes.object,
+  locale: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   member: selectCurrentMember(),
   subscriptions: selectAllSubscriptions(),
-  auth: selectAuthToken()
+  auth: selectAuthToken(),
+  locale: selectLocale(),
 });
 
 const mapDispatchToProps = dispatch => ({

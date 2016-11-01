@@ -7,7 +7,9 @@ import {
 import { Link } from 'react-router';
 
 import { MemberDropdownMenu } from './MemberDropdownMenu';
+import LocaleDropdownMenu from './LocaleDropdownMenu';
 import logo from 'sou-assets/images/logo-positive.png';
+import {FormattedMessage} from 'react-intl';
 
 export const Header = (props) => (
   <Navbar staticTop fluid>
@@ -20,12 +22,17 @@ export const Header = (props) => (
     <Navbar.Collapse>
       <Nav pullRight>
         <NavItem eventKey={1}>
-          <Link to="/subscriptions">Recurring Donations</Link>
+          <Link to="/subscriptions">
+            <FormattedMessage id="menu.recurring_donations" />
+          </Link>
         </NavItem>
         <NavItem eventKey={1}>
-          <Link to="/payment-methods">Payment Methods</Link>
+          <Link to="/payment-methods">
+            <FormattedMessage id="menu.payment_methods" />
+          </Link>
         </NavItem>
         <MemberDropdownMenu member={props.member} onSignOut={props.onSignOut} />
+        <LocaleDropdownMenu />
       </Nav>
     </Navbar.Collapse>
   </Navbar>

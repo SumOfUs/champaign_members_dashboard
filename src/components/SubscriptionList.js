@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
 import Immutable from 'immutable';
+import {FormattedMessage} from 'react-intl';
 
 import {
   Table,
 } from 'react-bootstrap';
 
-import { SubscriptionItem } from './SubscriptionItem';
+import SubscriptionItem from './SubscriptionItem';
 
 const NoSubscriptions = props => (
   <tr>
     <td colSpan='6'>
-      <em>You don't have any recurring donations</em>
+      <em><FormattedMessage id="subscriptions.no_donations" /></em>
     </td>
   </tr>
 );
@@ -35,9 +36,9 @@ export const SubscriptionList = props => {
     <Table className="list-table">
       <thead>
         <tr>
-          <th>Created</th>
-          <th>Donation Amount</th>
-          <th>No. of Transactions</th>
+          <th><FormattedMessage id="subscriptions.created" /></th>
+          <th><FormattedMessage id="subscriptions.donation_amount" /></th>
+          <th><FormattedMessage id="subscriptions.donation_count" /></th>
           <th colSpan='1'></th>
         </tr>
       </thead>

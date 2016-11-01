@@ -10,19 +10,23 @@ import {
   selectRegistrationPageSubmitting,
   selectRegistrationPageSuccess,
 } from './RegistrationPage.selectors';
+
+import { selectLocale } from '../../store/selectors';
 import { register } from './RegistrationPage.actions';
 import RegistrationForm from './RegistrationForm';
 import RegistrationSuccess from './RegistrationSuccess';
 import SessionPageWrapper from '../../components/SessionPageWrapper/SessionPageWrapper';
+import {FormattedMessage} from 'react-intl';
+
 
 import './RegistrationPage.css';
 
-function validate(values) {
+const validate = (values) => {
   const ERRORS = {
-    REQUIRED: 'Required',
-    EMAIL_REGEX: 'Invalid email address',
-    PASSWORD_LENGTH: 'Must be 6 or more characters in length',
-    PASSWORD_CONFIRMATION: `Passwords don't match`,
+    REQUIRED: <FormattedMessage id="registration.required" />,
+    EMAIL_REGEX:  <FormattedMessage id="registration.invalid_email" />,
+    PASSWORD_LENGTH:   <FormattedMessage id="registration.password_length" />,
+    PASSWORD_CONFIRMATION:  <FormattedMessage id="registration.password_mismatch" />,
   };
 
   values = values.toJS();
@@ -87,7 +91,9 @@ export class RegistrationPage extends Component {
     return (
       <SessionPageWrapper>
         <section className="RegistrationPage-container">
-          <h1 className="RegistrationPage-title">Registration</h1>
+          <h1 className="RegistrationPage-title">
+            <FormattedMessage id="registration.register" />
+          </h1>
           { !submitSucceeded &&
             <RegistrationForm
               error={this.props.error}
@@ -112,8 +118,10 @@ const mapStateToProps = createStructuredSelector({
   member: selectRegistrationPageMember(),
   submitting: selectRegistrationPageSubmitting(),
   success: selectRegistrationPageSuccess(),
+  locale: selectLocale(),
 });
 
-export default reduxForm({ form: 'registration', validate })(
-  connect(mapStateToProps)(RegistrationPage)
-);
+
+const ReduxFormRegistrationPage = reduxForm({ form: 'registration', validate })(RegistrationPage);
+
+export default connect(mapStateToProps)(ReduxFormRegistrationPage);
