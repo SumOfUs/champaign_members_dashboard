@@ -30,7 +30,6 @@
     "react-addons-shallow-compare": "^15.3.2",
     "react-bootstrap": "^0.30.3",
     "react-dom": "^15.3.2",
-    "react-flags": "^0.1.12",
     "react-fontawesome": "^1.2.0",
     "react-helmet": "^3.1.0",
     "react-intl": "^2.1.5",
