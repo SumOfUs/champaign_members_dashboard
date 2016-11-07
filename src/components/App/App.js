@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectLocale, selectMessages } from '../../store/selectors';
 import './App.css';
 
-class App extends Component {
+export class App extends Component {
   static propTypes = {
     children: React.PropTypes.node,
     locale:  React.PropTypes.string,
