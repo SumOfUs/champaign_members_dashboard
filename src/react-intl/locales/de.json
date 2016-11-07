@@ -4,14 +4,15 @@
   "payment_methods.delete": "Delete",
   "payment_methods.payment_method": "Payment Method",
 
-  "login.title": "Login",
+  "login.title": "Sign in",
   "login.register": "Register",
-  "login.login": "LOG IN",
+  "login.login": "Sign in",
 
   "form.email": "Email",
   "form.password": "Password",
   "form.password_confirmation": "Password confirmation",
   "form.remember_me": "Remember me",
+  "form.forgot_password": "Forgot password?",
 
   "subscriptions.title": "Your Recurring Donations",
   "subscriptions.no_donations": "You don't have any recurring donations",

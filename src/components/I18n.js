@@ -8,6 +8,12 @@ import fr from 'react-intl/locale-data/fr';
 addLocaleData([...en, ...de, ...fr]);
 
 export default class I18n extends Component {
+  static propTypes = {
+    children: React.PropTypes.node,
+    messages: React.PropTypes.object,
+    locale:  React.PropTypes.string,
+  }
+
   render() {
     return(
       <IntlProvider locale={this.props.locale} messages={this.props.messages.toJS()}>
@@ -16,3 +22,4 @@ export default class I18n extends Component {
     )
   }
 };
+

@@ -145,7 +145,11 @@ export class LoginPage extends Component {
             <Button type="submit" disabled={submitting}>{formatMessage(i18n.login)}</Button>
             <Link to="/register">
               <FormattedMessage id="login.register" />
-             </Link>
+            </Link>
+            {' '} / {' '}
+            <a href={`https://actions.sumofus.org/reset_password/new?lang=${this.props.locale}`}>
+              <FormattedMessage id="form.forgot_password" />
+            </a>
           </form>
         </div>
       </SessionPageWrapper>
