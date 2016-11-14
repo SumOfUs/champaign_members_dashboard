@@ -16,10 +16,10 @@
 
   "subscriptions.title": "Your Recurring Donations",
   "subscriptions.no_donations": "You don't have any recurring donations",
-  "subscriptions.created": "Created DE",
+  "subscriptions.created": "Created",
   "subscriptions.donation_amount": "Donation Amount",
   "subscriptions.donation_count": "No. of Transactions",
-  "subscriptions.cancel": "CANCEL",
+  "subscriptions.cancel": "Cancel",
   "subscriptions.cancel_confirm": "Are you sure you want to cancel your recurring donation?",
   "menu.recurring_donations": "Recurring Donations",
   "menu.payment_methods": "Payment Methods",
@@ -32,3 +32,4 @@
   "registration.password_mismatch": "Passwords don't match",
   "registration.password_length": "Must be 6 or more characters in length"
 }
+

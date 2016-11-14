@@ -13,8 +13,6 @@ class SessionPageWrapper extends Component {
     children: PropTypes.node,
   };
 
-  shouldComponentUpdate = () => true;
-
   render() {
     return (
       <div className="SessionPageWrapper">

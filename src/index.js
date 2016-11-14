@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import Root from "./components/Root";
+import Root from "./containers/Root/Root";
 import { selectLocationState } from './store/selectors';
 import {
   default as configureStore,
