@@ -7,7 +7,7 @@ import {
 import { Link } from 'react-router';
 
 import { MemberDropdownMenu } from './MemberDropdownMenu';
-import LocaleDropdownMenu from './LocaleDropdownMenu';
+import LocaleDropdownMenu from '../../containers/Header/LocaleDropdownMenu';
 import logo from 'sou-assets/images/logo-positive.png';
 import {FormattedMessage} from 'react-intl';
 

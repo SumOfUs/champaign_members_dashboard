@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import './SessionPageWrapper.css';
 import logo from 'sou-assets/images/logo-positive.png';
-import LocaleDropdownMenu from '../Header/LocaleDropdownMenu';
+import LocaleDropdownMenu from '../../containers/Header/LocaleDropdownMenu';
 
 import {
   Navbar,
