@@ -1,9 +1,7 @@
 export const description = `
-  Thanks for your supporting SumOfUs! Here, you can view and delete
-  any payment methods you've saved with SumOfUs to make donating
-  easier and more secure. To add a new payment method,
-  just [make a donation to SumOfUs](https://actions.sumofus.org/a/donate) and make sure
-  you've opted to store your payment details. You can always be in touch
-  at [donations@sumofus.org](mailto:donations@sumofus.org) with
-  any questions!`;
-
+  Vielen Dank, dass Sie SumOfUs unterstützen! Hier können
+  Sie Ihre gespeicherten Zahlungsmethoden einsehen,
+  bearbeiten und entfernen. Sie können eine neue Zahlungsmethode hinzufügen,
+  indem Sie [an SumOfUs spenden](https://actions.sumofus.org/a/spende) und auswählen,
+  dass Ihre Zahlungsdaten gespeichert werden sollen. Sie haben Fragen? Dann schreiben 
+  Sie uns jederzeit an [hallo@sumofus.org](mailto:hallo@sumofus.org)!`;
