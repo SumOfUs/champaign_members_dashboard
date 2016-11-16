@@ -1,9 +1,8 @@
 export const description = `
-  If you have any recurring donations set up with SumOfUs,
-  you can view and cancel them here.
+  Wenn Sie regelmäßige Spenden an SumOfUs eingerichtet haben, 
+  können Sie sie hier einsehen und löschen.
 
-  If you'd like to set up a new recurring donation to support our
-  work, [you can do so here](https://actions.sumofus.org/a/donate).
-  You can always be in touch
-  at [donations@sumofus.org](mailto:donations@sumofus.org) with
-  any questions!`;
+  Sie möchten eine neue regelmäßige Spende einrichten? 
+  [Dann geht es hier entlang](https://actions.sumofus.org/a/spende).
+  Sollten Sie Fragen haben, können Sie uns jederzeit an 
+  [hallo@sumofus.org](mailto:hallo@sumofus.org) schreiben!`;
