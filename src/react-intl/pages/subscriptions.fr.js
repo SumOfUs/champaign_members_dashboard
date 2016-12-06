@@ -1,10 +1,4 @@
 export const description = `
-  If you have any recurring donations set up with SumOfUs,
-  you can view and cancel them here.
+  Si vous avez mis en place un don mensuel avec SumOfUs, vous pouvez le visualiser et l’annuler ici à tout moment.
 
-  If you'd like to set up a new recurring donation to support our
-  work, [you can do so here](https://actions.sumofus.org/a/donate).
-  You can always be in touch
-  at [donations@sumofus.org](mailto:donations@sumofus.org) with
-  any questions!`;
-
+  Si vous souhaitez mettre un place un nouveau don mensuel afin de soutenir notre travail, [vous pouvez le faire ici](https://actions.sumofus.org/a/soutiner-sumofus-donate-french).Vous pouvez également nous contacter à [bonjour@sumofus.org](mailto:bonjour@sumofus.org) si vous avez une question.`;
