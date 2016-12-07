@@ -12,6 +12,7 @@
   "form.password": "Mot de passe",
   "form.password_confirmation": "Confirmation du mot de passe",
   "form.remember_me": "Se souvenir de moi",
+  "form.forgot_password": "Mot de passe oublié ?",
 
   "subscriptions.title": "Vos don récurrents ",
   "subscriptions.no_donations": "Vous n'avez aucun don récurrent ",
