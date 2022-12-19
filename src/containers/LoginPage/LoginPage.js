@@ -147,7 +147,7 @@ export class LoginPage extends Component {
               <FormattedMessage id="login.register" />
             </Link>
             {' '} / {' '}
-            <a href={`https://actions.sumofus.org/reset_password/new?locale=${this.props.locale}`}>
+            <a href={`https://actions.eko.org/reset_password/new?locale=${this.props.locale}`}>
               <FormattedMessage id="form.forgot_password" />
             </a>
           </form>

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import './SessionPageWrapper.css';
-import logo from 'sou-assets/images/logo-positive.png';
+// import logo from 'sou-assets/images/logo-positive.png';
 import LocaleDropdownMenu from '../../containers/Header/LocaleDropdownMenu';
 
 import {
@@ -21,7 +21,7 @@ class SessionPageWrapper extends Component {
           <Navbar staticTop fluid>
             <Navbar.Header>
               <Navbar.Brand>
-                <img role="presentation" src={logo} />
+                {/* <img role="presentation" src={logo} /> */}
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
