@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 
 import { MemberDropdownMenu } from './MemberDropdownMenu';
 import LocaleDropdownMenu from '../../containers/Header/LocaleDropdownMenu';
-// import logo from 'logo.png';
+import './Header.css';
 
 import {FormattedMessage} from 'react-intl';
 
@@ -16,7 +16,7 @@ export const Header = (props) => (
   <Navbar staticTop fluid>
     <Navbar.Header>
       <Navbar.Brand>
-        <img role="presentation" src={'logo.png'} />
+        <img id="logo" role="presentation" src={'logo.png'} />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
