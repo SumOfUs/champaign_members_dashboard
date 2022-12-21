@@ -8,14 +8,15 @@ import { Link } from 'react-router';
 
 import { MemberDropdownMenu } from './MemberDropdownMenu';
 import LocaleDropdownMenu from '../../containers/Header/LocaleDropdownMenu';
-// import logo from 'sou-assets/images/logo-positive.png';
+// import logo from 'logo.png';
+
 import {FormattedMessage} from 'react-intl';
 
 export const Header = (props) => (
   <Navbar staticTop fluid>
     <Navbar.Header>
       <Navbar.Brand>
-        {/* <img role="presentation" src={logo} /> */}
+        <img role="presentation" src={'logo.png'} />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
