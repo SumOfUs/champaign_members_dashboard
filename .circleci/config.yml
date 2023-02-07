@@ -22,7 +22,7 @@ jobs:
             - ./deploy.sh $CIRCLE_SHA1
 workflows:
   version: 2
-  deoploy:
+  deploy:
     jobs:
       - deployment:
           filters:
