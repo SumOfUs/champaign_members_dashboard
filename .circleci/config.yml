@@ -1,0 +1,31 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/circleci-members-dashboard
+machine:
+  node:
+    version: 6.7.0
+  services:
+    - docker
+
+jobs:
+  deployment:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: elasticbeanstalk
+          commands:
+            - REACT_APP_CHAMPAIGN_URL=https://actions.sumofus.org npm run build
+            - docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
+            - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+            - ./deploy.sh $CIRCLE_SHA1
+workflows:
+  version: 2
+  deoploy:
+    jobs:
+      - deployment:
+          filters:
+            branches:
+              only:
+                - development
