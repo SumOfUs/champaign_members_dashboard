@@ -9,7 +9,7 @@ machine:
     - docker
 
 jobs:
-  deployment:
+  build:
     <<: *defaults
     docker:
     - image: node:10
@@ -22,14 +22,37 @@ jobs:
           command: |
               npm install
               REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
-              docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
-              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-              ./deploy.sh $CIRCLE_SHA1
+  build_docker_image:
+    <<: *defaults
+    docker:
+    - image: node:10
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/circleci-members-dashboard
+      - setup_remote_docker
+      - run:
+          name: Docker build
+          command: docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
+      - run:
+          name: Docker Login
+          command: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: Deploy
+          command: ./deploy.sh $CIRCLE_SHA1
+      
 workflows:
   version: 2
-  deoploy:
+  build_and_deploy:
     jobs:
-      - deployment:
+      - build:
+          filters:
+            branches:
+              only:
+                - development
+      - build_docker_image:
+          requires:
+            - build
           filters:
             branches:
               only:
