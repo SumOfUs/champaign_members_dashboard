@@ -11,15 +11,17 @@ machine:
 jobs:
   deployment:
     <<: *defaults
+    docker:
+    - image: node:10
     steps:
       - checkout
       - run:
           name: elasticbeanstalk
-          commands:
-            - REACT_APP_CHAMPAIGN_URL=https://actions.sumofus.org npm run build
-            - docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
-            - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-            - ./deploy.sh $CIRCLE_SHA1
+          command: |
+              REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
+              docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
+              docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+              ./deploy.sh $CIRCLE_SHA1
 workflows:
   version: 2
   deoploy:
