@@ -16,10 +16,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Docker client
+          command: apk add docker-cli
+      - run:
           name: elasticbeanstalk
           command: |
-              echo "$DOCKER_PASS"
-              echo "$DOCKER_USER"
               npm install
               REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
               docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
