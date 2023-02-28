@@ -18,6 +18,7 @@ jobs:
       - run:
           name: elasticbeanstalk
           command: |
+              npm install
               REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
               docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
               docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
