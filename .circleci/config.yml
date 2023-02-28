@@ -15,9 +15,8 @@ jobs:
     - image: node:10
     steps:
       - checkout
-      - run:
-          name: Install Docker client
-          command: apk add docker-cli
+      - setup_remote_docker:
+          version: 20.10.14
       - run:
           name: elasticbeanstalk
           command: |
