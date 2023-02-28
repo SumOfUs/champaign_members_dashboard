@@ -28,8 +28,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/circleci-members-dashboard
-      - setup_remote_docker:
-          version: 20.10.14
+      - setup_remote_docker
       - run:
           name: Docker build
           command: docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
