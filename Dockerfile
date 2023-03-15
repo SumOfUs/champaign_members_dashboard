@@ -1,4 +1,5 @@
 FROM 1science/nginx
+RUN dir -s
 RUN echo hello \
   # comment
   world
