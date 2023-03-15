@@ -24,6 +24,10 @@ jobs:
           name: list files
           command: |
               ls -R
+      - persist_to_workspace:
+          root: build
+          paths:
+            - /*
   build_docker_image:
     <<: *defaults
     docker:
@@ -31,11 +35,11 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/circleci-members-dashboard/workspace
+          at: ~/circleci-members-dashboard/
       - setup_remote_docker
       - run:
           name: list
-          command: ls
+          command: ls -R
       - run:
           name: Docker build
           command: docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
