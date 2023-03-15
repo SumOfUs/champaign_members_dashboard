@@ -27,7 +27,7 @@ jobs:
       - persist_to_workspace:
           root: build
           paths:
-            - /*
+            - /static/*
   build_docker_image:
     <<: *defaults
     docker:
