@@ -18,8 +18,6 @@ jobs:
       - run:
           name: elasticbeanstalk
           command: |
-              mkdir -p workspace
-              cd workspace
               npm install
               REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
       - persist_to_workspace:
