@@ -21,7 +21,7 @@ jobs:
               npm install
               REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
       - persist_to_workspace:
-          root: root
+          root: circleci-members-dashboard
           paths:
               - build/*
   build_docker_image:
