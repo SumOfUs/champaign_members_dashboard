@@ -15,14 +15,15 @@ jobs:
     - image: node:10
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/circleci-members-dashboard
       - run:
           name: elasticbeanstalk
           command: |
+              mkdir -p workspace
+              cd workspace
               npm install
               REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
-      - persist_to_workspace
+      - persist_to_workspace:
+          root: workspace
   build_docker_image:
     <<: *defaults
     docker:
@@ -30,8 +31,10 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/circleci-members-dashboard
+          at: ~/circleci-members-dashboard/workspace
       - setup_remote_docker
+      - run:
+        command: ls
       - run:
           name: Docker build
           command: docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
