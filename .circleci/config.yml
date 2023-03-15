@@ -25,9 +25,9 @@ jobs:
           command: |
               ls -R
       - persist_to_workspace:
-          root: build
+          root: ~/circleci-members-dashboard
           paths:
-            - static
+            - build
   build_docker_image:
     <<: *defaults
     docker:
