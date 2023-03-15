@@ -1,7 +1,7 @@
 FROM 1science/nginx
 RUN dir -s
 RUN cd /root
-RUN dir -s
+RUN ls -R
 RUN echo hello \
   # comment
   world
