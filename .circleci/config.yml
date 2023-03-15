@@ -45,7 +45,7 @@ jobs:
           command: docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
       - run:
           name: Docker Login
-          command: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run:
           name: Deploy
           command: ./deploy.sh $CIRCLE_SHA1
