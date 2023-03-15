@@ -23,9 +23,9 @@ jobs:
               npm install
               REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
       - persist_to_workspace:
-          root: workspace
-          paths: 
-              - /*
+          root: root
+          paths:
+              - build/*
   build_docker_image:
     <<: *defaults
     docker:
@@ -36,7 +36,7 @@ jobs:
           at: ~/circleci-members-dashboard/workspace
       - setup_remote_docker
       - run:
-          name: list 
+          name: list
           command: ls
       - run:
           name: Docker build
