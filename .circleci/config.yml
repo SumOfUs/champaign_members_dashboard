@@ -14,12 +14,40 @@ jobs:
     steps:
       - checkout
       - run:
-          name: elasticbeanstalk
-          commands:
-            - REACT_APP_CHAMPAIGN_URL=https://actions.sumofus.org npm run build
-            - docker build --rm=false -t  soutech/members_dashboard:$CIRCLE_SHA1 .
-            - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-            - ./deploy.sh $CIRCLE_SHA1
+          name: Install packages & build
+          command: |
+              npm install
+              REACT_APP_CHAMPAIGN_URL=https://actions.eko.org npm run build
+      - persist_to_workspace:
+          root: ~/circleci-members-dashboard
+          paths:
+            - build
+
+  build_docker_image:
+    <<: *defaults
+    docker:
+      - image: cimg/base:2022.06
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/circleci-members-dashboard/
+      - setup_remote_docker
+      - run:
+          name: Docker build
+          command: .circleci/build.sh
+
+  deploy_production:
+    <<: *defaults
+    docker:
+      - image: soutech/ruby:2.6-stretch-node-awscli
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/circleci-members-dashboard/
+      - run:
+          name: Deploy
+          command: .circleci/deploy.sh $CIRCLE_SHA1
+
 workflows:
   version: 2
   deoploy:
@@ -29,3 +57,18 @@ workflows:
             branches:
               only:
                 - development
+      - build_docker_image:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - development
+      - deploy_production:
+          requires:
+            - build_docker_image
+          filters:
+            branches:
+              only:
+                - development
+
