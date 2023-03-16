@@ -90,3 +90,11 @@ workflows:
             branches:
               only:
                 - development
+      - deploy_aws:
+          requires:
+            - build_docker_image
+          filters:
+            branches:
+              only:
+                - development
+
