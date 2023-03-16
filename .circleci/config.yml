@@ -7,7 +7,7 @@ machine:
     version: 6.7.0
   services:
     - docker
-    
+
 jobs:
   build:
     <<: *defaults
@@ -36,7 +36,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Docker build
-          command: .circleci/build.sh
+          command: sh .circleci/build.sh $CIRCLE_SHA1
 
   deploy_production:
     <<: *defaults
@@ -48,7 +48,7 @@ jobs:
           at: ~/circleci-members-dashboard/
       - run:
           name: Deploy
-          command: .circleci/deploy.sh $CIRCLE_SHA1
+          command: sh .circleci/deploy.sh $CIRCLE_SHA1
 
 workflows:
   version: 2
