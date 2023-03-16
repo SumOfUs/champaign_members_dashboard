@@ -1,5 +1,4 @@
 #!/bin/bash
-set -eu -o pipefail
 
 SHA1=$1
 
