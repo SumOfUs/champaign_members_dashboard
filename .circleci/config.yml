@@ -47,10 +47,20 @@ jobs:
           name: Docker Login
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run:
-          name: Deploy
+          name: Docker Push
           command: |
             docker push soutech/members_dashboard:$CIRCLE_SHA1
-
+  deploy_aws:
+    <<: *defaults
+    docker:
+      - image: cimg/aws:1.16.1
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/circleci-members-dashboard/
+      - run:
+          name: Deploy
+          command: |
             EB_BUCKET=members-dashboard-deployment
             DOCKERRUN_FILE=$CIRCLE_SHA1-Dockerrun.aws.json
             aws configure set default.region $AWS_REGION
