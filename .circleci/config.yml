@@ -53,7 +53,7 @@ jobs:
   deploy_aws:
     <<: *defaults
     docker:
-      - image: cimg/aws:1.16.1
+      - image: soutech/ruby:2.6-stretch-node-awscli
     steps:
       - checkout
       - attach_workspace:
