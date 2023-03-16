@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/circleci-members-dashboard
@@ -7,10 +7,12 @@ machine:
     version: 6.7.0
   services:
     - docker
-
+    
 jobs:
   build:
     <<: *defaults
+    docker:
+    - image: node:10
     steps:
       - checkout
       - run:
