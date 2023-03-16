@@ -9,7 +9,7 @@ machine:
     - docker
 
 jobs:
-  deployment:
+  build:
     <<: *defaults
     steps:
       - checkout
@@ -50,9 +50,9 @@ jobs:
 
 workflows:
   version: 2
-  deoploy:
+  deploy:
     jobs:
-      - deployment:
+      - build:
           filters:
             branches:
               only:
