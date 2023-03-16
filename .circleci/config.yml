@@ -41,7 +41,7 @@ jobs:
   deploy_production:
     <<: *defaults
     docker:
-      - image: soutech/ruby:2.6-stretch-node-awscli
+      - image: amazon/aws-cli
     steps:
       - checkout
       - attach_workspace:
