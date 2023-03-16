@@ -41,14 +41,26 @@ jobs:
   deploy_production:
     <<: *defaults
     docker:
-      - image: amazon/aws-cli
+      - image: soutech/ruby:2.6-stretch-node-awscli
     steps:
       - checkout
       - attach_workspace:
           at: ~/circleci-members-dashboard/
       - run:
           name: Deploy
-          command: sh .circleci/deploy.sh $CIRCLE_SHA1
+          command: |
+            EB_BUCKET=members-dashboard-deployment
+            DOCKERRUN_FILE=$CIRCLE_SHA1-Dockerrun.aws.json
+
+            aws configure set default.region $AWS_REGION
+
+            sed "s/<TAG>/$CIRCLE_SHA1/" < .circleci/Dockerrun.aws.json.template > $DOCKERRUN_FILE
+            aws s3 cp $DOCKERRUN_FILE s3://$EB_BUCKET/$DOCKERRUN_FILE
+            aws elasticbeanstalk create-application-version --application-name members-dashboard \
+            --version-label $CIRCLE_SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$DOCKERRUN_FILE
+
+            aws elasticbeanstalk update-environment --environment-name members-dashboard-env-production \
+            --version-label $CIRCLE_SHA1
 
 workflows:
   version: 2
