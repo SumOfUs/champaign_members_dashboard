@@ -71,8 +71,6 @@ workflows:
   build_and_deploy:
     jobs:
       - deploy_aws:
-          requires:
-            - build_docker_image
           filters:
             branches:
               only:
