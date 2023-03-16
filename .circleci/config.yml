@@ -64,6 +64,7 @@ jobs:
             EB_BUCKET=members-dashboard-deployment
             DOCKERRUN_FILE=$CIRCLE_SHA1-Dockerrun.aws.json
             echo $AWS_ACCESS_KEY_ID
+            aws s3 cp $DOCKERRUN_FILE s3://$EB_BUCKET/$DOCKERRUN_FILE
 
 
 workflows:
