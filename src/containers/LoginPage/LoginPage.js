@@ -9,7 +9,7 @@ import { FieldComponent } from '../../components/Forms/FieldComponent';
 import { LoadingOverlay } from '../../components/LoadingOverlay/LoadingOverlay';
 import SessionPageWrapper from '../../components/SessionPageWrapper/SessionPageWrapper';
 
-import {FormattedMessage, defineMessages, injectIntl} from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 
 import {
@@ -108,14 +108,14 @@ export class LoginPage extends Component {
       }
     })
 
-    const {formatMessage} = this.props.intl;
+    const { formatMessage } = this.props.intl;
 
     return (
       <SessionPageWrapper>
         <div id="LoginPage" className="LoginPage-container">
           <form onSubmit={handleSubmit(this.onSubmit)} className="LoginPage-form form-big">
             <h2 className="LoginPage-title">
-             <FormattedMessage
+              <FormattedMessage
                 id="login.title"
               />
             </h2>

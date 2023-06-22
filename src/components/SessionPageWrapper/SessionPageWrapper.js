@@ -20,7 +20,7 @@ class SessionPageWrapper extends Component {
                   <img
                     id="logo"
                     role="presentation"
-                    src={"https://sumofus.imgix.net/unique/Eko_Logo_Purple.png"}
+                    src={"https://champaign-assets-production.s3.us-west-2.amazonaws.com/unique/Eko_Logo_Purple.svg"}
                   />
                 </Navbar.Brand>
                 <Navbar.Toggle />
