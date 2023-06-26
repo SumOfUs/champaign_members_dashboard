@@ -10,13 +10,17 @@ import { MemberDropdownMenu } from './MemberDropdownMenu';
 import LocaleDropdownMenu from '../../containers/Header/LocaleDropdownMenu';
 import './Header.css';
 
-import {FormattedMessage} from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 export const Header = (props) => (
   <Navbar staticTop fluid>
     <Navbar.Header>
       <Navbar.Brand>
-        <img id="logo" role="presentation" src={'logo.png'} />
+        <img
+          id="logo"
+          role="presentation"
+          src={"https://champaign-assets-production.s3.us-west-2.amazonaws.com/unique/Eko_Logo_Purple.svg"}
+        />
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
